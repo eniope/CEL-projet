@@ -96,17 +96,7 @@ Il avance par petits pas, de manière réversible, en cherchant à préserver :
 * la cohérence épistémologique,
 * et les conditions d’un futur travail réellement collectif.
 
----
 
-*Ce dépôt est un seuil.
-Il n’expose pas une œuvre finie, mais les conditions de possibilité d’une œuvre à faire.*
 
----
 
-### ✳️ Si tu le souhaites, prochain pas possible
 
-* ajuster le ton (plus académique / plus accueillant),
-* produire une **version courte** du README (pour partage rapide),
-* ou écrire un **README miroir** pour le repo grand public, afin que les deux espaces dialoguent sans se confondre.
-
-Tu as maintenant une **assise claire** pour ouvrir le chemin, sans te précipiter.
