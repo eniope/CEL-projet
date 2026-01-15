@@ -2,8 +2,7 @@
 
 ## Posture, intention et mode de cheminement
 
-Ce dépôt n’est ni un site abouti, ni un outil finalisé, ni un appel à contribution technique au sens classique.
-Il constitue un **espace de travail ouvert**, destiné à rendre visible et partageable le **cheminement d’un projet de recherche et d’écriture** situé à l’interface entre sciences citoyennes, recherche-action participative et pratiques de savoir distribuées.
+Ce dépôt est un **espace de travail ouvert**, destiné à rendre visible et partageable le **cheminement d’un projet de recherche et d’écriture** situé à l’interface entre sciences citoyennes, recherche-action participative et pratiques de savoir distribuées.
 
 ### De quoi s’agit-il ?
 
@@ -21,11 +20,10 @@ Le projet s’intéresse en particulier à :
 
 ## Une posture assumée
 
-Ce dépôt porte une **posture de recherche située**.
-
-* Il ne vise pas à produire immédiatement des résultats stabilisés.
-* Il ne propose pas de modèle clé en main.
-* Il ne sépare pas strictement réflexion, action, écriture et outillage.
+Ce dépôt porte une **posture de recherche située** ce qui fait :
+- qu'ill ne vise pas à produire immédiatement des résultats stabilisés.
+- qu'il il ne propose pas de modèle clé en main.
+- qu'il ne sépare pas strictement réflexion, action, écriture et outillage.
 
 Au contraire, il rend visible un **cheminement en train de se faire**, à partir d’un vécu expérientiel prolongé de participation à des collectifs de recherche-action et de dynamiques associatives territorialisées.
 
