@@ -17,7 +17,7 @@
       "display_date": "Étape 1",
       "group": "Guide",
       "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png?1",
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
         "caption": "Vue d’ensemble du schéma"
       },
       "text": {
@@ -30,10 +30,6 @@
       "start_date": { "year": "2026", "month": "2", "day": "1" },
       "display_date": "Étape 2",
       "group": "Guide",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
-        "caption": "Zoom conceptuel"
-    }
       "text": {
         "headline": "Contexte transactionnel",
         "text": "Milieu humain, milieu technique, ressources, identités déjà là."
