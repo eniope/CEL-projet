@@ -1,33 +1,40 @@
 {
   "title": {
+    "media": {
+      "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+      "caption": "Schématisation des transactions coopératives (Zacklad)",
+      "credit": "PermaMAP_STC"
+    },
     "text": {
       "headline": "Voyage dans un parcours transactionnel",
-      "text": "Une lecture progressive du cadre STC."
+      "text": "Cette frise propose une lecture progressive du cadre STC. Il s'agit d'une carte pour comprendre, non d'une description linéaire de la réalité vécue."
     }
   },
   "events": [
 
-{
-  "start_date": { "year": "1" },
-  "display_date": "Étape 1",
-  "group": "Guide",
-  "text": {
-    "headline": "La carte d’ensemble",
-    "text": "Voici le schéma systémique complet. Nous allons maintenant le parcourir progressivement."
-  },
-  "media": {
-    "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
-    "caption": "Schématisation des transactions coopératives (Zacklad)",
-    "credit": "Source : STC"
-  }
-}
+    {
+      "start_date": { "year": "1" },
+      "display_date": "Étape 1",
+      "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
+      },
+      "text": {
+        "headline": "Pourquoi cette carte ?",
+        "text": "Le schéma STC montre simultanément des dimensions multiples. Nous allons le parcourir progressivement pour en desserrer la densité."
+      }
+    },
+
     {
       "start_date": { "year": "2" },
       "display_date": "Étape 2",
       "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
+      },
       "text": {
         "headline": "Rien ne part de zéro",
-        "text": "Toute transaction est enchâssée dans un contexte : milieu humain, milieu technique, ressources déjà là."
+        "text": "Toute transaction est enchâssée dans un contexte : milieu humain, milieu technique, identités et ressources déjà là."
       }
     },
 
@@ -47,7 +54,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation engageante",
-        "text": "Promesses, engagements, formulation d’un vouloir."
+        "text": "Promesses, engagements, formulation d’un vouloir et d’un devoir."
       }
     },
 
@@ -65,9 +72,12 @@
       "start_date": { "year": "6" },
       "display_date": "Étape 6",
       "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
+      },
       "text": {
         "headline": "Les artefacts médiateurs",
-        "text": "<p>Les artefacts portent la valeur et soutiennent la capacitation.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p><p>Ils relient réalisateurs et bénéficiaires.</p>"
+        "text": "Plans, contrats, outils, récits : des artefacts porteurs de valeur et capacitants soutiennent l’action."
       }
     },
 
@@ -77,7 +87,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation performative",
-        "text": "Faire, produire, coordonner l’action."
+        "text": "Faire, produire, coordonner : l’action se déploie."
       }
     },
 
@@ -105,19 +115,35 @@
       "start_date": { "year": "10" },
       "display_date": "Étape 10",
       "group": "Transformations",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
+      },
       "text": {
         "headline": "Transformations",
-        "text": "<p>Le self se transforme, les artefacts évoluent, le milieu se reconfigure.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p>"
+        "text": "Le self se transforme, les artefacts évoluent, le milieu se reconfigure."
       }
     },
 
     {
       "start_date": { "year": "11" },
-      "display_date": "Conclusion",
+      "display_date": "Étape 11",
       "group": "Guide",
       "text": {
+        "headline": "Self : réaliser et bénéficier",
+        "text": "Dans une même personne coexistent une part réalisatrice et une part bénéficiaire. L’individuation se joue dans cette tension."
+      }
+    },
+
+    {
+      "start_date": { "year": "12" },
+      "display_date": "Conclusion",
+      "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
+      },
+      "text": {
         "headline": "Tisser dans la matière de sa vie",
-        "text": "<p>Transaction après transaction, chacun tisse dans la matière de sa vie.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p>"
+        "text": "Transaction après transaction, chacun tisse dans la matière de sa vie, entre souci de soi et souci du collectif."
       }
     }
 
