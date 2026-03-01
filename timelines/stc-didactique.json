@@ -1,11 +1,8 @@
 {
   "title": {
-    "media": {
-      "url": "https://conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-    },
     "text": {
       "headline": "Voyage dans un parcours transactionnel",
-      "text": "Lecture progressive du schéma Sémiotique des Transactions Coopératives."
+      "text": "Une lecture progressive du cadre STC."
     }
   },
   "events": [
@@ -14,13 +11,9 @@
       "start_date": { "year": "1" },
       "display_date": "Étape 1",
       "group": "Guide",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-    
-      },
       "text": {
-        "headline": "La carte",
-        "text": "Voici le schéma global. La frise va maintenant en dérouler les dimensions."
+        "headline": "La carte systémique",
+        "text": "<p>Voici le schéma d’ensemble que nous allons parcourir.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p><p>Nous allons le dérouler progressivement.</p>"
       }
     },
 
@@ -28,12 +21,9 @@
       "start_date": { "year": "2" },
       "display_date": "Étape 2",
       "group": "Guide",
-      "media": {
-        "url": "https://conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
       "text": {
-        "headline": "Contexte transactionnel",
-        "text": "Regardons le volet gauche : rien ne part de zéro."
+        "headline": "Rien ne part de zéro",
+        "text": "Toute transaction est enchâssée dans un contexte : milieu humain, milieu technique, ressources déjà là."
       }
     },
 
@@ -41,12 +31,9 @@
       "start_date": { "year": "3" },
       "display_date": "Étape 3",
       "group": "Guide",
-      "media": {
-        "url": "https://conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
       "text": {
-        "headline": "Situation transactionnelle",
-        "text": "La flèche rouge indique l’entrée en situation."
+        "headline": "Entrer en situation",
+        "text": "Un déclencheur, une tension, une visée. La situation transactionnelle se configure."
       }
     },
 
@@ -56,7 +43,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation engageante",
-        "text": "Le programme transactionnel se met en mouvement."
+        "text": "Promesses, engagements, formulation d’un vouloir."
       }
     },
 
@@ -66,7 +53,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation capacitante",
-        "text": "Les artefacts médiateurs deviennent visibles."
+        "text": "Apprendre, s’équiper, augmenter le pouvoir d’agir."
       }
     },
 
@@ -74,12 +61,9 @@
       "start_date": { "year": "6" },
       "display_date": "Étape 6",
       "group": "Guide",
-      "media": {
-        "url": "https://conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
       "text": {
-        "headline": "Le cœur du schéma",
-        "text": "Sujet(s) réalisateur(s), artefacts médiateurs, sujet(s) bénéficiaire(s)."
+        "headline": "Les artefacts médiateurs",
+        "text": "<p>Les artefacts portent la valeur et soutiennent la capacitation.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p><p>Ils relient réalisateurs et bénéficiaires.</p>"
       }
     },
 
@@ -89,7 +73,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation performative",
-        "text": "L’action se déploie."
+        "text": "Faire, produire, coordonner l’action."
       }
     },
 
@@ -99,33 +83,37 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation évaluative",
-        "text": "La valeur est discutée."
+        "text": "Mesurer, discuter la valeur, ajuster."
       }
     },
 
     {
       "start_date": { "year": "9" },
       "display_date": "Étape 9",
-      "group": "Transformations",
-      "media": {
-        "url": "https://conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
+      "group": "Régimes de conversation",
       "text": {
-        "headline": "Transformations",
-        "text": "Regardons les volets supérieur et inférieur : transformation des selfs et des artefacts."
+        "headline": "Conversation rétributive",
+        "text": "Reconnaître, redistribuer, stabiliser."
       }
     },
 
     {
       "start_date": { "year": "10" },
+      "display_date": "Étape 10",
+      "group": "Transformations",
+      "text": {
+        "headline": "Transformations",
+        "text": "<p>Le self se transforme, les artefacts évoluent, le milieu se reconfigure.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p>"
+      }
+    },
+
+    {
+      "start_date": { "year": "11" },
       "display_date": "Conclusion",
       "group": "Guide",
-      "media": {
-        "url": "https://conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
       "text": {
         "headline": "Tisser dans la matière de sa vie",
-        "text": "Transaction après transaction, chacun tisse dans la matière de sa vie."
+        "text": "<p>Transaction après transaction, chacun tisse dans la matière de sa vie.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p>"
       }
     }
 
