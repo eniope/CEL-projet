@@ -1,116 +1,109 @@
 {
   "title": {
     "text": {
-      "headline": "Parcours transactionnel (version didactique)",
-      "text": "Frise schématique : la carte n’est pas le territoire. Cette frise déroule progressivement le cadre STC afin d’en faciliter l’appropriation intellectuelle avant son usage dans l’espace vécu."
+      "headline": "Voyage dans un parcours transactionnel",
+      "text": "Lecture progressive du cadre STC. La carte aide à s’orienter sans prétendre décrire la réalité telle quelle."
     }
   },
   "events": [
 
     {
       "start_date": { "year": "2026", "month": "1", "day": "1" },
-      "end_date": { "year": "2026", "month": "12", "day": "31" },
+      "display_date": "Étape 1",
+      "group": "Guide",
       "text": {
-        "headline": "Contexte transactionnel",
-        "text": "Conditions de possibilité : milieu humain et technique, identités, compétences, patrimoine, capital."
+        "headline": "Pourquoi cette carte ?",
+        "text": "Le schéma STC montre simultanément plusieurs dimensions. Nous allons les parcourir progressivement."
       }
     },
 
     {
       "start_date": { "year": "2026", "month": "2", "day": "1" },
-      "end_date": { "year": "2026", "month": "2", "day": "28" },
+      "display_date": "Étape 2",
+      "group": "Guide",
       "text": {
-        "headline": "Situation transactionnelle",
-        "text": "Entrée en situation : déclencheur, problématisation, cadrage initial."
+        "headline": "Rien ne part de zéro",
+        "text": "Toute transaction est enchâssée dans un contexte : milieux, ressources, compétences."
       }
     },
 
     {
       "start_date": { "year": "2026", "month": "3", "day": "1" },
-      "end_date": { "year": "2026", "month": "3", "day": "31" },
+      "display_date": "Étape 3",
+      "group": "Guide",
       "text": {
-        "headline": "Engagement",
-        "text": "Alignement des actants, promesses, contrats. Régime conversationnel engageant."
+        "headline": "Entrer en situation",
+        "text": "Un déclencheur, une tension, une visée configurent la situation transactionnelle."
       }
     },
 
     {
       "start_date": { "year": "2026", "month": "4", "day": "1" },
-      "end_date": { "year": "2026", "month": "4", "day": "30" },
+      "display_date": "Étape 4",
+      "group": "Régimes de conversation",
       "text": {
-        "headline": "Capacitation",
-        "text": "Montée en pouvoir d’agir : apprentissages, outillage. Régime conversationnel capacitant."
+        "headline": "Conversation engageante",
+        "text": "Formulation des engagements et des promesses."
       }
     },
 
     {
       "start_date": { "year": "2026", "month": "5", "day": "1" },
-      "end_date": { "year": "2026", "month": "6", "day": "30" },
+      "display_date": "Étape 5",
+      "group": "Régimes de conversation",
       "text": {
-        "headline": "Performance",
-        "text": "Production effective : faire / être / œuvre / milieu. Régime conversationnel performatif."
+        "headline": "Conversation capacitante",
+        "text": "Apprendre, s’équiper, augmenter le pouvoir d’agir."
+      }
+    },
+
+    {
+      "start_date": { "year": "2026", "month": "6", "day": "1" },
+      "display_date": "Étape 6",
+      "group": "Régimes de conversation",
+      "text": {
+        "headline": "Conversation performative",
+        "text": "Faire, produire, coordonner l’action."
       }
     },
 
     {
       "start_date": { "year": "2026", "month": "7", "day": "1" },
-      "end_date": { "year": "2026", "month": "7", "day": "31" },
+      "display_date": "Étape 7",
+      "group": "Régimes de conversation",
       "text": {
-        "headline": "Évaluation",
-        "text": "Mesures, conventions, arbitrages. Régime conversationnel évaluatif."
+        "headline": "Conversation évaluative",
+        "text": "Mesurer, discuter la valeur, ajuster."
       }
     },
 
     {
       "start_date": { "year": "2026", "month": "8", "day": "1" },
-      "end_date": { "year": "2026", "month": "8", "day": "31" },
+      "display_date": "Étape 8",
+      "group": "Régimes de conversation",
       "text": {
-        "headline": "Rétribution / Stabilisation",
-        "text": "Répartition, reconnaissance, célébration. Régime conversationnel rétributif."
+        "headline": "Conversation rétributive",
+        "text": "Reconnaître et stabiliser."
       }
     },
 
     {
-      "start_date": { "year": "2026", "month": "3", "day": "1" },
-      "end_date": { "year": "2026", "month": "8", "day": "31" },
-      "text": {
-        "headline": "Self individuel et collectif",
-        "text": "Individuation en situation et agencement collectif. Le self se transforme dans et par la transaction."
-      }
-    },
-
-    {
-      "start_date": { "year": "2026", "month": "3", "day": "1" },
-      "end_date": { "year": "2026", "month": "6", "day": "30" },
-      "text": {
-        "headline": "Part réalisatrice dominante",
-        "text": "Porter l’action, organiser, produire."
-      }
-    },
-
-    {
-      "start_date": { "year": "2026", "month": "5", "day": "1" },
-      "end_date": { "year": "2026", "month": "8", "day": "31" },
-      "text": {
-        "headline": "Part bénéficiaire explicite",
-        "text": "Recevoir, juger, transformer l’expérience en apprentissages."
-      }
-    },
-
-    {
-      "start_date": { "year": "2026", "month": "5", "day": "1" },
-      "text": {
-        "headline": "Bascule didactique",
-        "text": "Réaliser et bénéficier coexistent souvent dans un même self."
-      }
-    },
-
-    {
-      "start_date": { "year": "2026", "month": "5", "day": "1" },
-      "end_date": { "year": "2026", "month": "12", "day": "31" },
+      "start_date": { "year": "2026", "month": "9", "day": "1" },
+      "display_date": "Étape 9",
+      "group": "Transformations",
       "text": {
         "headline": "Transformations",
         "text": "Transformation des selfs, des artefacts et du milieu."
+      }
+    },
+
+    {
+      "start_date": { "year": "2026", "month": "10", "day": "1" },
+      "display_date": "Conclusion",
+      "group": "Guide",
+      "text": {
+        "headline": "Tisser dans la matière de sa vie",
+        "text": "Transaction après transaction, chacun tisse dans la matière de sa vie entre souci de soi et souci du collectif."
       }
     }
 
