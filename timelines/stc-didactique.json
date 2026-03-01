@@ -1,10 +1,15 @@
 {
   "title": {
+    "media": {
+      "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+      "caption": "Schéma STC — Sémiotique des Transactions Coopératives"
+    },
     "text": {
       "headline": "Voyage dans un parcours transactionnel",
-      "text": "Lecture progressive du cadre STC. La carte aide à s’orienter sans prétendre décrire la réalité telle quelle."
+      "text": "Lecture progressive du cadre STC. La carte aide à comprendre avant l’usage dans l’espace vécu."
     }
   },
+
   "events": [
 
     {
@@ -13,7 +18,7 @@
       "group": "Guide",
       "text": {
         "headline": "Pourquoi cette carte ?",
-        "text": "Le schéma STC montre simultanément plusieurs dimensions. Nous allons les parcourir progressivement."
+        "text": "Le schéma STC rend visibles plusieurs dimensions simultanées. Nous allons les parcourir progressivement."
       }
     },
 
@@ -22,8 +27,8 @@
       "display_date": "Étape 2",
       "group": "Guide",
       "text": {
-        "headline": "Rien ne part de zéro",
-        "text": "Toute transaction est enchâssée dans un contexte : milieux, ressources, compétences."
+        "headline": "Contexte transactionnel",
+        "text": "Milieu humain, milieu technique, ressources, identités déjà là."
       }
     },
 
@@ -32,8 +37,8 @@
       "display_date": "Étape 3",
       "group": "Guide",
       "text": {
-        "headline": "Entrer en situation",
-        "text": "Un déclencheur, une tension, une visée configurent la situation transactionnelle."
+        "headline": "Situation transactionnelle",
+        "text": "Déclencheur, tension, problématisation."
       }
     },
 
@@ -43,7 +48,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation engageante",
-        "text": "Formulation des engagements et des promesses."
+        "text": "Promesses, engagements, formulation du vouloir."
       }
     },
 
@@ -63,7 +68,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation performative",
-        "text": "Faire, produire, coordonner l’action."
+        "text": "Produire, coordonner, agir."
       }
     },
 
@@ -73,7 +78,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation évaluative",
-        "text": "Mesurer, discuter la valeur, ajuster."
+        "text": "Discuter la valeur, ajuster."
       }
     },
 
@@ -83,7 +88,7 @@
       "group": "Régimes de conversation",
       "text": {
         "headline": "Conversation rétributive",
-        "text": "Reconnaître et stabiliser."
+        "text": "Reconnaître, redistribuer, stabiliser."
       }
     },
 
@@ -102,8 +107,8 @@
       "display_date": "Conclusion",
       "group": "Guide",
       "text": {
-        "headline": "Tisser dans la matière de sa vie",
-        "text": "Transaction après transaction, chacun tisse dans la matière de sa vie entre souci de soi et souci du collectif."
+        "headline": "Self : réaliser et bénéficier",
+        "text": "Une même personne peut être à la fois réalisatrice et bénéficiaire."
       }
     }
 
