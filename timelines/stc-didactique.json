@@ -7,16 +7,20 @@
   },
   "events": [
 
-    {
-      "start_date": { "year": "1" },
-      "display_date": "Étape 1",
-      "group": "Guide",
-      "text": {
-        "headline": "La carte systémique",
-        "text": "<p>Voici le schéma d’ensemble que nous allons parcourir.</p><p style=\"text-align:center;\"><img src=\"/static/images/PermaMAP_STC.png\" style=\"max-width:60%; height:auto;\" /></p><p>Nous allons le dérouler progressivement.</p>"
-      }
-    },
-
+{
+  "start_date": { "year": "1" },
+  "display_date": "Étape 1",
+  "group": "Guide",
+  "text": {
+    "headline": "La carte d’ensemble",
+    "text": "Voici le schéma systémique complet. Nous allons maintenant le parcourir progressivement."
+  },
+  "media": {
+    "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+    "caption": "Schématisation des transactions coopératives (Zacklad)",
+    "credit": "Source : STC"
+  }
+}
     {
       "start_date": { "year": "2" },
       "display_date": "Étape 2",
