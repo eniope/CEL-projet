@@ -16,6 +16,10 @@
       "start_date": { "year": "2026", "month": "1", "day": "1" },
       "display_date": "Étape 1",
       "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Vue d’ensemble du schéma"
+      },
       "text": {
         "headline": "Pourquoi cette carte ?",
         "text": "Le schéma STC rend visibles plusieurs dimensions simultanées. Nous allons les parcourir progressivement."
@@ -36,6 +40,10 @@
       "start_date": { "year": "2026", "month": "3", "day": "1" },
       "display_date": "Étape 3",
       "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Zoom conceptuel : situation et contexte"
+      },
       "text": {
         "headline": "Situation transactionnelle",
         "text": "Déclencheur, tension, problématisation."
@@ -46,6 +54,10 @@
       "start_date": { "year": "2026", "month": "4", "day": "1" },
       "display_date": "Étape 4",
       "group": "Régimes de conversation",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Régime engageant dans le schéma"
+      },
       "text": {
         "headline": "Conversation engageante",
         "text": "Promesses, engagements, formulation du vouloir."
@@ -66,6 +78,10 @@
       "start_date": { "year": "2026", "month": "6", "day": "1" },
       "display_date": "Étape 6",
       "group": "Régimes de conversation",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Dimension performative"
+      },
       "text": {
         "headline": "Conversation performative",
         "text": "Produire, coordonner, agir."
@@ -86,6 +102,10 @@
       "start_date": { "year": "2026", "month": "8", "day": "1" },
       "display_date": "Étape 8",
       "group": "Régimes de conversation",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Rétribution et stabilisation"
+      },
       "text": {
         "headline": "Conversation rétributive",
         "text": "Reconnaître, redistribuer, stabiliser."
@@ -96,6 +116,10 @@
       "start_date": { "year": "2026", "month": "9", "day": "1" },
       "display_date": "Étape 9",
       "group": "Transformations",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Transformations résultantes"
+      },
       "text": {
         "headline": "Transformations",
         "text": "Transformation des selfs, des artefacts et du milieu."
@@ -106,9 +130,13 @@
       "start_date": { "year": "2026", "month": "10", "day": "1" },
       "display_date": "Conclusion",
       "group": "Guide",
+      "media": {
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
+        "caption": "Self : réaliser et bénéficier"
+      },
       "text": {
-        "headline": "Self : réaliser et bénéficier",
-        "text": "Une même personne peut être à la fois réalisatrice et bénéficiaire."
+        "headline": "Tisser dans la matière de sa vie",
+        "text": "Une même personne peut être à la fois réalisatrice et bénéficiaire. La transaction transforme le monde et le self."
       }
     }
 
