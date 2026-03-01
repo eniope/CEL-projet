@@ -9,14 +9,13 @@
       "text": "Lecture progressive du cadre STC. La carte aide à comprendre avant l’usage dans l’espace vécu."
     }
   },
- "events": [
-
+  "events": [
     {
-      "start_date": { "year": "2026", "month": "1", "day": "1" },
+      "start_date": { "year": 2026, "month": 1, "day": 1 },
       "display_date": "Étape 1",
       "group": "Guide",
       "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png?1",
+        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
         "caption": "Vue d’ensemble du schéma"
       },
       "text": {
@@ -24,9 +23,8 @@
         "text": "Le schéma STC rend visibles plusieurs dimensions simultanées. Nous allons les parcourir progressivement."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "2", "day": "1" },
+      "start_date": { "year": 2026, "month": 2, "day": 1 },
       "display_date": "Étape 2",
       "group": "Guide",
       "text": {
@@ -34,9 +32,8 @@
         "text": "Milieu humain, milieu technique, ressources, identités déjà là."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "3", "day": "1" },
+      "start_date": { "year": 2026, "month": 3, "day": 1 },
       "display_date": "Étape 3",
       "group": "Guide",
       "media": {
@@ -48,9 +45,8 @@
         "text": "Déclencheur, tension, problématisation."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "4", "day": "1" },
+      "start_date": { "year": 2026, "month": 4, "day": 1 },
       "display_date": "Étape 4",
       "group": "Régimes de conversation",
       "media": {
@@ -62,9 +58,8 @@
         "text": "Promesses, engagements, formulation du vouloir."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "5", "day": "1" },
+      "start_date": { "year": 2026, "month": 5, "day": 1 },
       "display_date": "Étape 5",
       "group": "Régimes de conversation",
       "text": {
@@ -72,9 +67,8 @@
         "text": "Apprendre, s’équiper, augmenter le pouvoir d’agir."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "6", "day": "1" },
+      "start_date": { "year": 2026, "month": 6, "day": 1 },
       "display_date": "Étape 6",
       "group": "Régimes de conversation",
       "media": {
@@ -86,9 +80,8 @@
         "text": "Produire, coordonner, agir."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "7", "day": "1" },
+      "start_date": { "year": 2026, "month": 7, "day": 1 },
       "display_date": "Étape 7",
       "group": "Régimes de conversation",
       "text": {
@@ -96,9 +89,8 @@
         "text": "Discuter la valeur, ajuster."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "8", "day": "1" },
+      "start_date": { "year": 2026, "month": 8, "day": 1 },
       "display_date": "Étape 8",
       "group": "Régimes de conversation",
       "media": {
@@ -110,9 +102,8 @@
         "text": "Reconnaître, redistribuer, stabiliser."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "9", "day": "1" },
+      "start_date": { "year": 2026, "month": 9, "day": 1 },
       "display_date": "Étape 9",
       "group": "Transformations",
       "media": {
@@ -124,9 +115,8 @@
         "text": "Transformation des selfs, des artefacts et du milieu."
       }
     },
-
     {
-      "start_date": { "year": "2026", "month": "10", "day": "1" },
+      "start_date": { "year": 2026, "month": 10, "day": 1 },
       "display_date": "Conclusion",
       "group": "Guide",
       "media": {
@@ -138,7 +128,5 @@
         "text": "Une même personne peut être à la fois réalisatrice et bénéficiaire. La transaction transforme le monde et le self."
       }
     }
-
   ]
- 
 }
