@@ -1,149 +1,116 @@
 {
   "title": {
-    "media": {
-      "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png",
-      "caption": "Schématisation des transactions coopératives (Zacklad)",
-      "credit": "PermaMAP_STC"
-    },
     "text": {
-      "headline": "Voyage dans un parcours transactionnel",
-      "text": "Cette frise propose une lecture progressive du cadre STC. Il s'agit d'une carte pour comprendre, non d'une description linéaire de la réalité vécue."
+      "headline": "Parcours transactionnel (version didactique)",
+      "text": "Frise schématique : la carte n’est pas le territoire. Cette frise déroule progressivement le cadre STC afin d’en faciliter l’appropriation intellectuelle avant son usage dans l’espace vécu."
     }
   },
   "events": [
 
     {
-      "start_date": { "year": "1" },
-      "display_date": "Étape 1",
-      "group": "Guide",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
+      "start_date": { "year": "2026", "month": "1", "day": "1" },
+      "end_date": { "year": "2026", "month": "12", "day": "31" },
       "text": {
-        "headline": "Pourquoi cette carte ?",
-        "text": "Le schéma STC montre simultanément des dimensions multiples. Nous allons le parcourir progressivement pour en desserrer la densité."
+        "headline": "Contexte transactionnel",
+        "text": "Conditions de possibilité : milieu humain et technique, identités, compétences, patrimoine, capital."
       }
     },
 
     {
-      "start_date": { "year": "2" },
-      "display_date": "Étape 2",
-      "group": "Guide",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
+      "start_date": { "year": "2026", "month": "2", "day": "1" },
+      "end_date": { "year": "2026", "month": "2", "day": "28" },
       "text": {
-        "headline": "Rien ne part de zéro",
-        "text": "Toute transaction est enchâssée dans un contexte : milieu humain, milieu technique, identités et ressources déjà là."
+        "headline": "Situation transactionnelle",
+        "text": "Entrée en situation : déclencheur, problématisation, cadrage initial."
       }
     },
 
     {
-      "start_date": { "year": "3" },
-      "display_date": "Étape 3",
-      "group": "Guide",
+      "start_date": { "year": "2026", "month": "3", "day": "1" },
+      "end_date": { "year": "2026", "month": "3", "day": "31" },
       "text": {
-        "headline": "Entrer en situation",
-        "text": "Un déclencheur, une tension, une visée. La situation transactionnelle se configure."
+        "headline": "Engagement",
+        "text": "Alignement des actants, promesses, contrats. Régime conversationnel engageant."
       }
     },
 
     {
-      "start_date": { "year": "4" },
-      "display_date": "Étape 4",
-      "group": "Régimes de conversation",
+      "start_date": { "year": "2026", "month": "4", "day": "1" },
+      "end_date": { "year": "2026", "month": "4", "day": "30" },
       "text": {
-        "headline": "Conversation engageante",
-        "text": "Promesses, engagements, formulation d’un vouloir et d’un devoir."
+        "headline": "Capacitation",
+        "text": "Montée en pouvoir d’agir : apprentissages, outillage. Régime conversationnel capacitant."
       }
     },
 
     {
-      "start_date": { "year": "5" },
-      "display_date": "Étape 5",
-      "group": "Régimes de conversation",
+      "start_date": { "year": "2026", "month": "5", "day": "1" },
+      "end_date": { "year": "2026", "month": "6", "day": "30" },
       "text": {
-        "headline": "Conversation capacitante",
-        "text": "Apprendre, s’équiper, augmenter le pouvoir d’agir."
+        "headline": "Performance",
+        "text": "Production effective : faire / être / œuvre / milieu. Régime conversationnel performatif."
       }
     },
 
     {
-      "start_date": { "year": "6" },
-      "display_date": "Étape 6",
-      "group": "Guide",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
+      "start_date": { "year": "2026", "month": "7", "day": "1" },
+      "end_date": { "year": "2026", "month": "7", "day": "31" },
       "text": {
-        "headline": "Les artefacts médiateurs",
-        "text": "Plans, contrats, outils, récits : des artefacts porteurs de valeur et capacitants soutiennent l’action."
+        "headline": "Évaluation",
+        "text": "Mesures, conventions, arbitrages. Régime conversationnel évaluatif."
       }
     },
 
     {
-      "start_date": { "year": "7" },
-      "display_date": "Étape 7",
-      "group": "Régimes de conversation",
+      "start_date": { "year": "2026", "month": "8", "day": "1" },
+      "end_date": { "year": "2026", "month": "8", "day": "31" },
       "text": {
-        "headline": "Conversation performative",
-        "text": "Faire, produire, coordonner : l’action se déploie."
+        "headline": "Rétribution / Stabilisation",
+        "text": "Répartition, reconnaissance, célébration. Régime conversationnel rétributif."
       }
     },
 
     {
-      "start_date": { "year": "8" },
-      "display_date": "Étape 8",
-      "group": "Régimes de conversation",
+      "start_date": { "year": "2026", "month": "3", "day": "1" },
+      "end_date": { "year": "2026", "month": "8", "day": "31" },
       "text": {
-        "headline": "Conversation évaluative",
-        "text": "Mesurer, discuter la valeur, ajuster."
+        "headline": "Self individuel et collectif",
+        "text": "Individuation en situation et agencement collectif. Le self se transforme dans et par la transaction."
       }
     },
 
     {
-      "start_date": { "year": "9" },
-      "display_date": "Étape 9",
-      "group": "Régimes de conversation",
+      "start_date": { "year": "2026", "month": "3", "day": "1" },
+      "end_date": { "year": "2026", "month": "6", "day": "30" },
       "text": {
-        "headline": "Conversation rétributive",
-        "text": "Reconnaître, redistribuer, stabiliser."
+        "headline": "Part réalisatrice dominante",
+        "text": "Porter l’action, organiser, produire."
       }
     },
 
     {
-      "start_date": { "year": "10" },
-      "display_date": "Étape 10",
-      "group": "Transformations",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
+      "start_date": { "year": "2026", "month": "5", "day": "1" },
+      "end_date": { "year": "2026", "month": "8", "day": "31" },
+      "text": {
+        "headline": "Part bénéficiaire explicite",
+        "text": "Recevoir, juger, transformer l’expérience en apprentissages."
+      }
+    },
+
+    {
+      "start_date": { "year": "2026", "month": "5", "day": "1" },
+      "text": {
+        "headline": "Bascule didactique",
+        "text": "Réaliser et bénéficier coexistent souvent dans un même self."
+      }
+    },
+
+    {
+      "start_date": { "year": "2026", "month": "5", "day": "1" },
+      "end_date": { "year": "2026", "month": "12", "day": "31" },
       "text": {
         "headline": "Transformations",
-        "text": "Le self se transforme, les artefacts évoluent, le milieu se reconfigure."
-      }
-    },
-
-    {
-      "start_date": { "year": "11" },
-      "display_date": "Étape 11",
-      "group": "Guide",
-      "text": {
-        "headline": "Self : réaliser et bénéficier",
-        "text": "Dans une même personne coexistent une part réalisatrice et une part bénéficiaire. L’individuation se joue dans cette tension."
-      }
-    },
-
-    {
-      "start_date": { "year": "12" },
-      "display_date": "Conclusion",
-      "group": "Guide",
-      "media": {
-        "url": "https://eniope.github.io/conversations-en-lisieres.collaborations/static/images/PermaMAP_STC.png"
-      },
-      "text": {
-        "headline": "Tisser dans la matière de sa vie",
-        "text": "Transaction après transaction, chacun tisse dans la matière de sa vie, entre souci de soi et souci du collectif."
+        "text": "Transformation des selfs, des artefacts et du milieu."
       }
     }
 
