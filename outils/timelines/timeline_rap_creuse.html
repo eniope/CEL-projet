@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAP Creuse - Arc narratif territorial</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f5f0e8;
+    --cream: #ede6d6;
+    --rust: #8b3a2a;
+    --ochre: #c47c2e;
+    --moss: #4a6741;
+    --slate: #3d4f5c;
+    --mist: #b8c4c0;
+    --gold: #d4a843;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--parchment); color: var(--ink); font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 300; min-height: 100vh; }
+  header { background: var(--ink); color: var(--parchment); padding: 2.5rem 3rem; border-bottom: 4px solid var(--rust); }
+  header h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.2; }
+  header .subtitle { font-size: 0.9rem; color: var(--mist); margin-top: 0.5rem; font-style: italic; letter-spacing: 0.05em; }
+  header .galeano { margin-top: 1rem; font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 0.8rem; max-width: 620px; line-height: 1.7; }
+  header .galeano .author { font-style: normal; font-size: 0.75rem; color: var(--mist); display: block; margin-top: 0.3rem; }
+  .legend { display: flex; gap: 1.5rem; padding: 1rem 3rem; background: var(--cream); border-bottom: 1px solid #d4c9b5; flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .main { display: flex; padding: 2rem 3rem; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+  .timeline-col { flex: 1; position: relative; }
+  .timeline-axis { position: absolute; left: 80px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--rust), var(--ochre), var(--moss), var(--slate)); }
+  .era { position: relative; margin-bottom: 0.5rem; }
+  .era-label { position: absolute; left: 0; width: 70px; text-align: right; padding-right: 8px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mist); top: 0.5rem; }
+  .era-bar { margin-left: 86px; padding: 0.3rem 1rem; border-radius: 2px; font-family: Georgia, 'Times New Roman', serif; font-size: 0.75rem; font-style: italic; letter-spacing: 0.05em; }
+  .era-bar.grande-histoire { background: rgba(139,58,42,0.12); border-left: 3px solid var(--rust); color: var(--rust); }
+  .era-bar.histoire-locale { background: rgba(196,124,46,0.12); border-left: 3px solid var(--ochre); color: #7a5010; }
+  .era-bar.rap { background: rgba(74,103,65,0.12); border-left: 3px solid var(--moss); color: var(--moss); }
+  .era-bar.utopia { background: rgba(61,79,92,0.12); border-left: 3px solid var(--slate); color: var(--slate); }
+  .events-section { padding: 0.5rem 0 1rem 0; }
+  .event { display: flex; align-items: flex-start; margin-bottom: 0.6rem; cursor: pointer; position: relative; }
+  .event:hover .event-card { transform: translateX(3px); box-shadow: 3px 3px 12px rgba(0,0,0,0.12); }
+  .event.no-hover { cursor: default; }
+  .event.no-hover:hover .event-card { transform: none; box-shadow: none; }
+  .event-year { width: 70px; text-align: right; padding-right: 8px; font-family: Georgia, 'Times New Roman', serif; font-size: 0.95rem; font-weight: 700; line-height: 1.4; flex-shrink: 0; color: var(--ink); }
+  .event-year.small { font-size: 0.75rem; font-weight: 400; color: #666; }
+  .event-node { width: 16px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.35rem; position: relative; z-index: 1; }
+  .event-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--parchment); flex-shrink: 0; }
+  .dot-grande { background: var(--rust); }
+  .dot-locale { background: var(--ochre); }
+  .dot-rap { background: var(--moss); }
+  .dot-utopia { background: var(--slate); }
+  .dot-gold { background: var(--gold); }
+  .dot-pivot { width: 16px !important; height: 16px !important; border: 3px solid var(--parchment) !important; box-shadow: 0 0 0 2px currentColor; }
+  .event-card { flex: 1; margin-left: 0.8rem; padding: 0.6rem 0.9rem; border-radius: 4px; background: white; border: 1px solid #e0d8ca; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .event-card.pivot { border-width: 2px; }
+  .event-card.grande { border-color: #c4a090; }
+  .event-card.locale { border-color: #d4b070; }
+  .event-card.rap { border-color: #90b080; }
+  .event-card.utopia { border-color: #8090a0; }
+  .event-card.pivot.grande { background: #fdf5f2; border-color: var(--rust); }
+  .event-card.pivot.locale { background: #fdf8f0; border-color: var(--ochre); }
+  .event-card.pivot.rap { background: #f2f7f0; border-color: var(--moss); }
+  .event-card.pivot.utopia { background: #f0f3f7; border-color: var(--slate); }
+  .ifma-card { background: #faf6ec !important; border: 1px dashed #c4a840 !important; cursor: default; }
+  .ifma-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #8a6820; margin-bottom: 0.4rem; }
+  .ifma-body { font-size: 0.84rem; color: #444; line-height: 1.6; }
+  .ifma-body strong { color: var(--ink); font-weight: 600; }
+  .event-title { font-weight: 600; font-size: 0.88rem; line-height: 1.3; color: var(--ink); }
+  .event-tag { display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.1rem 0.4rem; border-radius: 2px; margin-bottom: 0.25rem; }
+  .tag-grande { background: rgba(139,58,42,0.1); color: var(--rust); }
+  .tag-locale { background: rgba(196,124,46,0.1); color: #7a5010; }
+  .tag-rap { background: rgba(74,103,65,0.1); color: var(--moss); }
+  .tag-utopia { background: rgba(61,79,92,0.1); color: var(--slate); }
+  .tag-ref { background: rgba(61,79,92,0.07); color: #555; }
+  .sub-event { margin-left: 1.6rem; }
+  .sub-event .event-dot { width: 9px !important; height: 9px !important; }
+  .arc-wrap { display: flex; align-items: flex-start; margin-bottom: 1rem; }
+  .arc-spacer { width: 86px; flex-shrink: 0; }
+  .arc-narratif { flex: 1; margin-left: calc(0.8rem + 16px); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; overflow: hidden; background: white; border-top: 1px solid rgba(212,168,67,0.3); border-right: 1px solid rgba(212,168,67,0.3); border-bottom: 1px solid rgba(212,168,67,0.3); }
+  .arc-narratif-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #8a6820; padding: 0.45rem 0.9rem; background: rgba(212,168,67,0.1); border-bottom: 1px solid rgba(212,168,67,0.2); }
+  .arc-item { display: flex; align-items: flex-start; border-bottom: 1px solid rgba(212,168,67,0.15); cursor: pointer; transition: background 0.12s ease; }
+  .arc-item:last-child { border-bottom: none; }
+  .arc-item:hover { background: rgba(212,168,67,0.06); }
+  .arc-num { width: 30px; flex-shrink: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); padding: 0.7rem 0.4rem 0.7rem 0.8rem; }
+  .arc-card { flex: 1; padding: 0.7rem 0.9rem 0.7rem 0.3rem; }
+  .arc-year { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.2rem; }
+  .arc-title { font-weight: 600; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.25rem; }
+  .arc-body { font-size: 0.81rem; color: #555; line-height: 1.5; margin-bottom: 0.3rem; }
+  .arc-quote { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.82rem; color: #7a5010; line-height: 1.55; margin: 0.3rem 0; }
+  .arc-link { font-size: 0.74rem; color: var(--moss); text-decoration: none; border-bottom: 1px dotted var(--moss); }
+  .arc-link:hover { color: var(--rust); border-color: var(--rust); }
+  .arc-question { font-size: 0.78rem; font-style: italic; color: var(--moss); margin-top: 0.3rem; }
+  .detail-panel { width: 320px; flex-shrink: 0; position: sticky; top: 1rem; align-self: flex-start; }
+  .panel-inner { background: var(--ink); color: var(--parchment); border-radius: 6px; padding: 1.8rem; min-height: 300px; }
+  .panel-year { font-family: Georgia, 'Times New Roman', serif; font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--gold); margin-bottom: 0.5rem; }
+  .panel-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.7rem; }
+  .panel-body { font-size: 0.84rem; line-height: 1.7; color: #d0c8bc; }
+  .panel-quote { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.87rem; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 0.8rem; margin: 0.8rem 0; line-height: 1.5; }
+  .panel-question { margin-top: 1rem; font-size: 0.79rem; font-style: italic; color: var(--mist); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.7rem; }
+  .panel-link { margin-top: 0.8rem; }
+  .panel-link a { font-size: 0.77rem; color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .panel-empty { display: flex; align-items: center; justify-content: center; height: 200px; font-style: italic; color: var(--mist); font-size: 0.85rem; text-align: center; line-height: 1.6; }
+  .section-spacer { height: 1.5rem; }
+  footer { text-align: center; padding: 1.5rem; font-size: 0.75rem; color: #888; font-style: italic; border-top: 1px solid #d4c9b5; margin-top: 2rem; }
+  /* OVERLAY MOBILE */
+  .overlay-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; }
+  .overlay-backdrop.open { display: block; }
+  .overlay-drawer {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 101;
+    background: var(--ink); color: var(--parchment);
+    border-radius: 16px 16px 0 0;
+    padding: 0 1.5rem 2rem 1.5rem;
+    max-height: 80vh; overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .overlay-drawer.open { transform: translateY(0); }
+  .overlay-handle {
+    display: flex; justify-content: center; padding: 0.75rem 0 0.5rem;
+    cursor: pointer;
+  }
+  .overlay-handle-bar { width: 40px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; }
+  .overlay-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; color: var(--mist);
+    font-size: 1.4rem; cursor: pointer; line-height: 1;
+  }
+  .overlay-year { font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 0.3rem; }
+  .overlay-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.6rem; }
+  .overlay-body { font-size: 0.84rem; line-height: 1.7; color: #d0c8bc; }
+  .overlay-quote { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.87rem; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 0.8rem; margin: 0.7rem 0; line-height: 1.5; }
+  .overlay-question { margin-top: 0.8rem; font-size: 0.79rem; font-style: italic; color: var(--mist); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.6rem; }
+  .overlay-link { margin-top: 0.7rem; }
+  .overlay-link a { font-size: 0.77rem; color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+
+  @media (max-width: 700px) {
+    header { padding: 1.2rem 1rem; }
+    header h1 { font-size: 1.3rem; }
+    header .galeano { font-size: 0.78rem; }
+    .legend { padding: 0.6rem 1rem; gap: 0.8rem; }
+    .legend-item { font-size: 0.7rem; }
+    .main { padding: 1rem 0.5rem; }
+    .detail-panel { display: none; }
+    .event-year { width: 48px; font-size: 0.8rem; }
+    .event-year.small { font-size: 0.68rem; }
+    .timeline-axis { left: 56px; }
+    .era-label { width: 48px; font-size: 0.6rem; }
+    .era-bar { margin-left: 60px; font-size: 0.7rem; }
+    .event-card { padding: 0.5rem 0.7rem; }
+    .event-title { font-size: 0.82rem; }
+    .arc-spacer { width: 60px; }
+    .arc-narratif { margin-left: calc(0.6rem + 16px); }
+    .sub-event { margin-left: 1rem; }
+    footer { padding: 1rem; }
+  }
+</style>
+</head>77
+<body>
+
+<header>
+  <h1>>L'histoire des Plateaux limousins, une utopie concrète ? - Des traces aux récits</h1>
+  <p class="subtitle">Recherche Action Participative (RAP) Creuse - Géographie sensible des associations en territoire rural 1974-2026</p>
+  <div class="galeano">
+    « L'utopie est à l'horizon. Je fais deux pas vers elle, elle s'éloigne de deux pas. Je fais dix pas, et l'horizon s'enfuit dix pas plus loin. Alors, à quoi sert l'utopie ? À ça : à marcher. »
+    <span class="author">Eduardo Galeano</span>
+  </div>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--rust)"></div> Grande Histoire</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--ochre)"></div> Histoire locale</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--moss)"></div> RAP / Sciences citoyennes</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--slate)"></div> Perspectives</div>
+  <div class="legend-item" style="font-size:0.75rem; color:#888; border-left:1px solid #ccc; padding-left:1rem;">Cliquer sur un jalon pour le détail</div>
+</div>
+<div class="main">
+  <div class="timeline-col">
+    <div class="timeline-axis"></div>
+
+    <!-- GRANDE HISTOIRE -->
+    <div class="era">
+      <div class="era-label">Strate</div>
+      <div class="era-bar grande-histoire">Grande Histoire - résistances et migrations</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="XIXe-1944"
+        data-title="Résistances séculaires - Maçons, maquis, migrations"
+        data-body="L'identité du Plateau se forge dans des siècles de migrations et de lutte. Les maçons creusois, le maquis de Guingouin (1944), les canuts - autant de strates de résistance qui constituent le substrat politique du territoire."
+        data-quote="Vivre en travaillant, mourir en combattant."
+        data-question="" data-link="https://www.journal-ipns.org/les-articles/les-articles/709-etre-du-plateau-de-millevaches-exemple-d-un-territoire-en-construction">
+        <div class="event-year small">XIXe-<br>1944</div>
+        <div class="event-node"><div class="event-dot dot-grande"></div></div>
+        <div class="event-card grande">
+          <span class="event-tag tag-grande">Grande Histoire</span>
+          <div class="event-title">Résistances séculaires - Maçons, maquis, migrations</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1970s"
+        data-title="Charles Rousseau - La conscience commune comme acte fondateur"
+        data-body="Face au fatalisme ambiant (« laissez-nous mourir tranquilles »), Charles Rousseau insuffle un élan citoyen. L'achat collectif du Villard par 7 familles (1973-75) marque le passage du nomadisme militant à l'ancrage territorial. Le MRJC, les fêtes des énergies nouvelles, l'accueil des travailleurs turcs : une conscience commune se construit par l'action."
+        data-quote="Ce n'est pas le tout d'avoir des programmes, ce n'est pas le tout d'avoir des gens qui font des projets, il faut qu'il y ait un peuple qui se lève, il faut qu'il y ait une conscience commune qui se fasse..."
+        data-question="Comment une conscience commune émerge-t-elle ?"
+        data-link="https://www.journal-ipns.org/les-articles/709-etre-du-plateau-de-millevaches-exemple-d-un-territoire-en-construction">
+        <div class="event-year">1970s</div>
+        <div class="event-node"><div class="event-dot dot-grande dot-pivot"></div></div>
+        <div class="event-card grande pivot">
+          <span class="event-tag tag-grande">Grande Histoire - Pivot</span>
+          <div class="event-title">Charles Rousseau - « Il faut qu'un peuple se lève »</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- HISTOIRE LOCALE -->
+    <div class="era">
+      <div class="era-label">Strate</div>
+      <div class="era-bar histoire-locale">Histoire locale - Les Plateaux Limousins (1974-2022)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1974"
+        data-title="Fondation des Plateaux Limousins"
+        data-body="Création de l'association Les Plateaux Limousins. Une pépinière pour le territoire : elle accueille et fait émerger d'autres initiatives (Télé Millevaches, Syndicat de la Montagne Limousine, PNR). Source réelle du récit de 2023, bien que celui-ci ne soit pas encore écrit à cette date."
+        
+        data-quote="Quand on me dit qu'il n'y a rien à faire, je me dis qu'il y a tant à faire / Ce n'est pas foutu"    
+        data-question="L'influence de 1974 est-elle visible dans les récits de vie ?"
+        data-link="https://www.journal-ipns.org/les-articles/les-articles/1160-aux-origines-de-tele-millevaches-un-cure-agitateur">
+        <div class="event-year">1974</div>
+        <div class="event-node"><div class="event-dot dot-locale dot-pivot"></div></div>
+        <div class="event-card locale pivot">
+          <span class="event-tag tag-locale">Histoire locale - Fondation</span>
+          <div class="event-title">Fondation des Plateaux Limousins - La source réelle</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1974-2022"
+        data-title="50 ans de pépinière territoriale"
+        data-body="L'association devient un support pour l'émergence d'initiatives (Télé Millevaches, IPNS, abattoirs citoyens, réseaux de logements). Transformation progressive : de la résistance au fatalisme vers la création de services publics citoyens. La petite équipe y construit des gîtes, y organise des débats et y lance la première des fêtes des Plateaux qui, de 1978 à 1986, deviendront chaque dernier week-end de septembre, le rendez-vous obligé de tous ceux qui se reconnaissent acteurs de la vie du pays."
+        data-quote="" data-question="" data-link="https://www.journal-ipns.org/les-articles/les-articles/1160-aux-origines-de-tele-millevaches-un-cure-agitateur">
+        <div class="event-year small">-2022</div>
+        <div class="event-node"><div class="event-dot dot-locale"></div></div>
+        <div class="event-card locale">
+          <span class="event-tag tag-locale">Histoire locale</span>
+          <div class="event-title">50 ans de création collective - pépinière et vitalité associative</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2022"
+        data-title="Réouvrir le mètre cube d'archives"
+        data-body="Geste fondateur de la démarche : plonger dans la mémoire matérielle pour transformer la résistance en création. Pour rester pertinent, le Plateau doit permettre aux nouveaux arrivants de s'approprier son héritage - non pour le répéter, mais pour le transformer. Cette initiative donne lieu à la création d'une frise chronologique venant compléter celle qui est publiée sur le site d'IPNS (voir lien ci dessous)"
+        data-quote="Comment transformer la résistance en création ? Pour rester un territoire pertinent, il faut que les personnes qui arrivent aujourd'hui ici s'approprient ces sujets, pour passer de l'étape de résistance à la création."
+        data-question="Comment passe-t-on de la résistance à la création ?"
+        data-link="https://www.journal-ipns.org/les-articles/les-articles/1806-les-plateaux-limousins-50-ans-dune-histoire-inseparable-de-lhistoire-du-plateau">
+        <div class="event-year">2022</div>
+        <div class="event-node"><div class="event-dot dot-locale dot-pivot"></div></div>
+        <div class="event-card locale pivot">
+          <span class="event-tag tag-locale">Histoire locale - Pivot</span>
+          <div class="event-title">Jérome Orvain : "Réouvrir le mètre cube d'archives ?"</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- RAP / SCIENCES CITOYENNES -->
+    <div class="era">
+      <div class="era-label">Phase</div>
+      <div class="era-bar rap">RAP / Sciences citoyennes (2021-2026)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2021"
+        data-title="Livre blanc GT - Fait associatif et territoire"
+        data-body="20 acteurs et chercheurs identifient les besoins de connaissance sur les associations et les territoires. Passage d'une vision descendante à une compréhension du territoire comme construit social. Le matériau révèle un territoire de l'invisible et un déficit de données qualitatives sur les trajectoires associatives."
+        data-quote="" data-question="Comment transformer le Livre blanc en moteur d'apprentissage ?" data-link="">
+        <div class="event-year">2021</div>
+        <div class="event-node"><div class="event-dot dot-rap dot-pivot"></div></div>
+        <div class="event-card rap pivot">
+          <span class="event-tag tag-rap">Sciences citoyennes - Amorce</span>
+          <div class="event-title">A l'échelle nationale, lancement d'un groupe de travail "Fait associatif et territoires"</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="réf."
+        data-title="Wiggins & Crowston - Sciences citoyennes et agenda civique"
+        data-body="Les projets de science citoyenne orientés vers l'action encouragent l'intervention des participants dans les préoccupations locales. La recherche scientifique devient un outil pour soutenir les agendas civiques. Ces projets ne sont pas des projets scientifiques, mais d'abord des projets citoyens, qui nécessitent un soutien scientifique. Cet accompagnement requiert néanmoins les mêmes méthodes scientifiques que tout autre projet de recherche. Le tiers secteur de la recherche en découle : les associations et habitants y sont des partenaires d'égale importance face aux chercheurs professionnels."
+        data-quote="Les chercheurs sont plutôt des consultants ou des collaborateurs que les initiateurs."
+        data-question=""
+        data-link="https://callisto-formation.fr/course/view.php?id=320&section=1">
+        <div class="event-year small">réf.</div>
+        <div class="event-node"><div class="event-dot dot-rap"></div></div>
+        <div class="event-card rap">
+          <span class="event-tag tag-ref">Cadre théorique</span>
+          <div class="event-title">Sciences citoyennes, agenda civique et tiers secteur de la recherche</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2023"
+        data-title="AMI IFMA - 9 co-lauréats"
+        data-body="L'Institut Français du Monde Associatif lance un Appel à Manifestation d'Intérêt. 9 projets co-lauréats. Parmi eux : Géographie sensible des associations en territoire rural (Maïlys Kydjian / Les Plateaux limousins, Le Café de l'Espace, Déclic Nord Creuse, RER ). Le tiers secteur de la recherche entre en scène : les associations ne sont pas de simples objets d'étude mais des partenaires actifs produisant des connaissances en dehors du cadre académique strict."
+        data-quote="" data-question="" data-link="https://institutfrancaisdumondeassociatif.org/recherches-laureates/la-geographie-sensible-des-associations-locales-en-milieu-rural/">
+        <div class="event-year">2023</div>
+        <div class="event-node"><div class="event-dot dot-rap dot-pivot"></div></div>
+        <div class="event-card rap pivot">
+          <span class="event-tag tag-rap">RAP - Institutionnalisation</span>
+          <div class="event-title">AMI IFMA - sélection du projet « Géographie sensible des associations en territoire rrural » avec 8 autres co-lauréats</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2023-mars 2025"
+        data-title="Entretiens collectifs"
+        data-body="Fondateurs, bénévoles, salariés des Plateaux Limousins, du Café de l'Espace (créé en 2010) et de Déclic Nord Creuse (créé en 2015) témoignent. La géographie sensible redéfinit le territoire par le rayonnement des pratiques, non par les limites administratives."
+        data-quote=""
+        data-question="Comment passe-t-on de la résistance à la création ?"
+        data-link="">
+        <div class="event-year small">2023-<br>mars 2025</div>
+        <div class="event-node"><div class="event-dot dot-rap"></div></div>
+        <div class="event-card rap">
+          <span class="event-tag tag-rap">RAP - Collecte</span>
+          <div class="event-title">Entretiens collectifs, analyses, écritures</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="16 oct."
+        data-title="Journée Recherche Ouverte"
+        data-body="Temps intermédiaire de la démarche : faire éprouver le processus, inviter chacun à se positionner comme chercheur à son propre niveau. Montée en généralité possible : si la recherche part du micro-social (trois associations locales), elle révèle des dynamiques de vie locale transversales."
+        data-quote="" data-question="" data-link="https://aliso.fr/initiatives/les-associations-faconnent-le-territoire-et-inversement/">
+        <div class="event-year small">16 oct.<br>2025</div>
+        <div class="event-node"><div class="event-dot dot-rap"></div></div>
+        <div class="event-card rap">
+          <span class="event-tag tag-rap">RAP - Jalon</span>
+          <div class="event-title">Journée Recherche Ouverte : Quel impact des associations sur le territoire, dans la durée ? Une recherche portée par des habitant.e.s & bénévoles de Creuse</div>
+        </div>
+      </div>
+
+      <!-- CARTOUCHE IFMA -->
+      <div class="event no-hover" style="margin-bottom:0.8rem;">
+        <div class="event-year small"></div>
+        <div class="event-node"><div class="event-dot dot-gold" style="width:10px;height:10px;border-color:var(--parchment);"></div></div>
+        <div class="event-card ifma-card" style="margin-left:0.8rem;">
+          <div class="ifma-label">Pendant une visio avec l'IFMA...</div>
+          <div class="ifma-body">
+            <strong>La Creuse vue du national :</strong> ce territoire pourrait être qualifié de « territoire coopératif par son histoire ».<br>
+            <strong>Observation sur la démarche :</strong> « Vous êtes peut-être en train de faire méthode pour faire groupe. »
+          </div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2 déc."
+        data-title="Convergence associative - ALISO, L'ARCHIPEL, TELA"
+        data-body="Agenda civique local en parallèle de la recherche. Journée de convergence du monde associatif creusois. Montée en latéralité plutôt que validation descendante. La démocratie dialogique se fait dans l'action collective."
+        data-quote="" data-question="" data-link="">
+        <div class="event-year small">2 déc.<br>2025</div>
+        <div class="event-node"><div class="event-dot dot-rap"></div></div>
+        <div class="event-card rap">
+          <span class="event-tag tag-rap">RAP - Agenda civique</span>
+          <div class="event-title">Convergence associative creusoise</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="début 2026"
+        data-title="Co-écriture du rapport + entretiens de fin en Tiers-veillance"
+        data-body="Phase de réflexivité collective. La tiers-veilleuse accompagne le cheminement vers le bilan. Co-écriture d'un rapport qui n'est pas un bilan administratif mais un jalon de récit - une histoire utile aux autres."
+        data-quote="" data-question="" data-link="https://sciencescitoyennes.org/wp-content/uploads/2019/04/AccompagnementRechercheParticipative-va.pdf">
+        <div class="event-year small">début<br>2026</div>
+        <div class="event-node"><div class="event-dot dot-rap"></div></div>
+        <div class="event-card rap">
+          <span class="event-tag tag-rap">RAP - Réflexivité</span>
+          <div class="event-title">Co-écriture du rapport - entretiens de fin en tiers-veillance</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="23 mars"
+        data-title="Journée Bilan et Perspectives - un seuil, pas une clôture"
+        data-body="Le 23 mars c'est le moment où le collectif prend du recul pour décider - éclairé - de ce qu'il fera de ce  vécu. Un seuil, pas une clôture."
+        data-question="Quelles conditions avons-nous concrètement créées pour que chacun puisse exercer une capacité politique réelle ?"
+        data-link="">
+        <div class="event-year small">23 mars<br>2026</div>
+        <div class="event-node"><div class="event-dot dot-rap dot-pivot"></div></div>
+        <div class="event-card rap pivot">
+          <span class="event-tag tag-rap">RAP - Seuil</span>
+          <div class="event-title">Bilan et Perspectives - Un seuil, pas une clôture</div>
+        </div>
+      </div>
+
+      <!-- ARC NARRATIF 1974-2022-2026 -->
+      <div class="arc-wrap">
+        <div class="arc-spacer"></div>
+        <div class="arc-narratif">
+          <div class="arc-narratif-label">Rappel et perspectives - Arc narratif 1974 - 2022 - 2026</div>
+
+          <div class="arc-item" onclick="showArcDetail(this)"
+            data-year="1974"
+            data-title="Charles Rousseau - La conscience commune"
+            data-body="Face au fatalisme ambiant, Charles Rousseau pose la question fondatrice du Plateau. L'achat du Villard par sept familles traduit le passage d'une sensibilité militante diffuse à un ancrage territorial concret. Créer Télé Millevaches, c'est prouver que ce n'est pas foutu."
+            data-quote="Ce n'est pas le tout d'avoir des programmes, ce n'est pas le tout d'avoir des gens qui font des projets, il faut qu'il y ait un peuple qui se lève, il faut qu'il y ait une conscience commune qui se fasse..."
+            data-link="https://www.journal-ipns.org/les-articles/709-etre-du-plateau-de-millevaches-exemple-d-un-territoire-en-construction"
+            data-question="Comment une conscience commune émerge-t-elle ?">
+            <div class="arc-num">1</div>
+            <div class="arc-card">
+              <div class="arc-year">1974 - Charles Rousseau</div>
+              <div class="arc-title">La conscience commune comme acte fondateur</div>
+            </div>
+          </div>
+
+          <div class="arc-item" onclick="showArcDetail(this)"
+            data-year="2022"
+            data-title="Jérome Orvain - De la résistance à la création"
+            data-body="Diagnostic territorial formulé lors du 1er entretien collectif. Pour rester pertinent, le Plateau doit permettre aux nouveaux arrivants de s'approprier son héritage - non pour le répéter, mais pour le transformer en capacité productive. La résistance ne peut rester une posture stérile."
+            data-quote="Comment transformer la résistance en création ? [...] Pour rester un territoire pertinent, il faut que les personnes qui arrivent aujourd'hui ici s'approprient ces sujets, pour passer de l'étape de résistance à la création."
+            data-link=""
+            data-question="Comment passe-t-on de la résistance à la création ? (1er entretien collectif)">
+            <div class="arc-num">2</div>
+            <div class="arc-card">
+              <div class="arc-year">2022 - Jérome Orvain</div>
+              <div class="arc-title">De la résistance à la création</div>
+            </div>
+          </div>
+
+          <div class="arc-item" onclick="showArcDetail(this)"
+            data-year="2026"
+            data-title="La RAP - Quelles conditions avons-nous créées ?"
+            data-body="Avec une certaine culture pratique du faire ensemble qui mettait l'idéologie à l'épreuve d'un réel situé, les dynamiques territoriales des Plateaux Limousins ont indéniablement créé un patrimoine riche en aptitudes à coopérer. En 2026, l'Anthropocène a poursuivi son oeuvre et transformer le réel ne rencontre plus du tout les mêmes conditions : polycrises, communs négatifs, épuisement des institutions, accélération des inégalités, effritement du lien de confiance envers le politique... La question n'est plus seulement de transmettre un héritage - mais de vérifier si les formes coopératives héritées sont encore opérantes, ou si elles doivent se réinventer pour rester des leviers réels de capacité politique."
+            data-quote="Actualiser l'héritage du Plateau, ce n'est pas répéter son histoire. C'est vérifier si, aujourd'hui, nous créons les conditions d'une capacité politique réelle."
+            data-link=""
+            data-question="Quelles conditions avons-nous concrètement créées pour que chacun puisse exercer une capacité politique réelle ?">
+            <div class="arc-num">3</div>
+            <div class="arc-card">
+              <div class="arc-year">2026 - La RAP</div>
+              <div class="arc-title">Actualiser l'héritage du Plateau ?</div>
+             </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- PERSPECTIVES -->
+    <div class="era">
+      <div class="era-label">Horizon</div>
+      <div class="era-bar utopia">Perspectives</div>
+    </div>
+    <div class="events-section">
+
+      <!-- BLOC GROUPÉ 2026 -->
+      <div style="display:flex; align-items:flex-start; margin-bottom:0.6rem;">
+        <div class="event-year">2026</div>
+        <div class="event-node" style="flex-shrink:0; width:16px; padding-top:0.35rem; z-index:1; position:relative; display:flex; align-items:flex-start; justify-content:center;">
+          <div class="event-dot dot-utopia"></div>
+        </div>
+        <div style="flex:1; margin-left:0.8rem; display:flex; flex-direction:column; gap:0.5rem;">
+
+          <div onclick="showDetail(this)"
+            data-year="2026"
+            data-title="Un livre, pot commun des savoirs expérientiels ? "
+            data-body="Point d'appui à des temps de restitution et d'animation dans chacune des 3 associations et au-delà (DLA, Aliso, Guid'Asso). Produire son propre récit pour éviter que d'autres ne racontent l'histoire à notre place. Remise au pot commun des savoirs expérientiels accumulés depuis 1974."
+            data-quote="" data-question="" data-link=""
+            style="cursor:pointer;"
+            onmouseenter="this.querySelector('.event-card').style.cssText='transform:translateX(3px);box-shadow:3px 3px 12px rgba(0,0,0,0.12)'"
+            onmouseleave="this.querySelector('.event-card').style.cssText=''">
+            <div class="event-card utopia">
+              <span class="event-tag tag-utopia">Perspectives - Publication</span>
+              <div class="event-title">Le rapport / Un livre, pot commun des savoirs expérientiels (DLA, Aliso, Guid'Asso...) ? </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline-col -->
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel">
+    <div class="panel-inner">
+      <div class="panel-empty" id="panel-empty">Cliquer sur un jalon<br>pour ouvrir le détail</div>
+      <div id="panel-content" style="display:none">
+        <div class="panel-year" id="p-year"></div>
+        <div class="panel-title" id="p-title"></div>
+        <div class="panel-body" id="p-body"></div>
+        <div class="panel-quote" id="p-quote" style="display:none"></div>
+        <div class="panel-question" id="p-question" style="display:none"></div>
+        <div class="panel-link" id="p-link-wrap" style="display:none">
+          <a id="p-link" href="" target="_blank">Lire la source -></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<footer>
+  
+
+<script>
+  let active = null;
+
+  function isMobile() { return window.innerWidth <= 700; }
+
+  function fillPanel(year, title, body, quote, question, link) {
+    document.getElementById('p-year').textContent = year;
+    document.getElementById('p-title').textContent = title;
+    document.getElementById('p-body').textContent = body;
+    const qEl = document.getElementById('p-quote');
+    if (quote) { qEl.textContent = '« ' + quote + ' »'; qEl.style.display = 'block'; } else { qEl.style.display = 'none'; }
+    const qqEl = document.getElementById('p-question');
+    if (question) { qqEl.textContent = '-> ' + question; qqEl.style.display = 'block'; } else { qqEl.style.display = 'none'; }
+    const lw = document.getElementById('p-link-wrap');
+    if (link) { document.getElementById('p-link').href = link; lw.style.display = 'block'; } else { lw.style.display = 'none'; }
+    document.getElementById('panel-empty').style.display = 'none';
+    document.getElementById('panel-content').style.display = 'block';
+  }
+
+  function fillOverlay(year, title, body, quote, question, link) {
+    document.getElementById('o-year').textContent = year;
+    document.getElementById('o-title').textContent = title;
+    document.getElementById('o-body').textContent = body;
+    const oq = document.getElementById('o-quote');
+    if (quote) { oq.textContent = '« ' + quote + ' »'; oq.style.display = 'block'; } else { oq.style.display = 'none'; }
+    const oqq = document.getElementById('o-question');
+    if (question) { oqq.textContent = '-> ' + question; oqq.style.display = 'block'; } else { oqq.style.display = 'none'; }
+    const olw = document.getElementById('o-link-wrap');
+    if (link) { document.getElementById('o-link').href = link; olw.style.display = 'block'; } else { olw.style.display = 'none'; }
+    document.getElementById('overlay-backdrop').classList.add('open');
+    document.getElementById('overlay-drawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOverlay() {
+    document.getElementById('overlay-backdrop').classList.remove('open');
+    document.getElementById('overlay-drawer').classList.remove('open');
+    document.body.style.overflow = '';
+    active = null;
+  }
+
+  function dispatch(year, title, body, quote, question, link) {
+    if (isMobile()) {
+      fillOverlay(year, title, body, quote, question, link);
+    } else {
+      fillPanel(year, title, body, quote, question, link);
+    }
+  }
+
+  function showDetail(el) {
+    if (!isMobile() && active === el) {
+      active = null;
+      document.getElementById('panel-empty').style.display = 'flex';
+      document.getElementById('panel-content').style.display = 'none';
+      return;
+    }
+    active = el;
+    dispatch(el.dataset.year, el.dataset.title, el.dataset.body, el.dataset.quote, el.dataset.question, el.dataset.link || '');
+  }
+
+  function showArcDetail(el) {
+    if (!isMobile() && active === el) {
+      active = null;
+      document.getElementById('panel-empty').style.display = 'flex';
+      document.getElementById('panel-content').style.display = 'none';
+      return;
+    }
+    active = el;
+    dispatch(el.dataset.year, el.dataset.title, el.dataset.body, el.dataset.quote, el.dataset.question, el.dataset.link || '');
+  }
+
+  // swipe down to close overlay
+  let touchStartY = 0;
+  document.getElementById('overlay-drawer') && document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+  document.addEventListener('touchend', e => {
+    if (document.getElementById('overlay-drawer').classList.contains('open')) {
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (dy > 60) closeOverlay();
+    }
+  });
+</script>
+
+<!-- OVERLAY MOBILE -->
+<div class="overlay-backdrop" id="overlay-backdrop" onclick="closeOverlay()"></div>
+<div class="overlay-drawer" id="overlay-drawer">
+  <div class="overlay-handle" onclick="closeOverlay()"><div class="overlay-handle-bar"></div></div>
+  <button class="overlay-close" onclick="closeOverlay()">&#x2715;</button>
+  <div class="overlay-year" id="o-year"></div>
+  <div class="overlay-title" id="o-title"></div>
+  <div class="overlay-body" id="o-body"></div>
+  <div class="overlay-quote" id="o-quote" style="display:none"></div>
+  <div class="overlay-question" id="o-question" style="display:none"></div>
+  <div class="overlay-link" id="o-link-wrap" style="display:none">
+    <a id="o-link" href="" target="_blank">Lire la source -></a>
+  </div>
+</div>
+</body>
+</html>
