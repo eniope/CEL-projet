@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'habitant-chercheur - stratigraphie d'une émergence</title>
+<style>
+  :root {
+    --ink: #1a1410;
+    --parchment: #f5f0e8;
+    --cream: #ede6d6;
+    --rust: #8b3a2a;
+    --ochre: #c47c2e;
+    --moss: #4a6741;
+    --slate: #3d4f5c;
+    --mist: #b8c4c0;
+    --gold: #d4a843;
+    --plum: #6b3a5c;
+    --teal: #2e6b6b;
+    --amber: #b86a1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--parchment); color: var(--ink); font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 300; min-height: 100vh; }
+  header { background: var(--ink); color: var(--parchment); padding: 2.5rem 3rem; border-bottom: 4px solid var(--rust); }
+  header h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.2; }
+  header .subtitle { font-size: 0.9rem; color: var(--mist); margin-top: 0.5rem; font-style: italic; letter-spacing: 0.05em; }
+  header .epigraph { margin-top: 1rem; font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 0.8rem; max-width: 680px; line-height: 1.7; }
+  header .epigraph .author { font-style: normal; font-size: 0.75rem; color: var(--mist); display: block; margin-top: 0.3rem; }
+  .legend { display: flex; gap: 1.5rem; padding: 1rem 3rem; background: var(--cream); border-bottom: 1px solid #d4c9b5; flex-wrap: wrap; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .main { display: flex; padding: 2rem 3rem; gap: 2rem; max-width: 1400px; margin: 0 auto; }
+  .timeline-col { flex: 1; position: relative; }
+  .timeline-axis { position: absolute; left: 80px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--rust), var(--ochre), var(--moss), var(--plum), var(--slate)); }
+  .era { position: relative; margin-bottom: 0.5rem; }
+  .era-label { position: absolute; left: 0; width: 70px; text-align: right; padding-right: 8px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mist); top: 0.5rem; line-height: 1.3; }
+  .era-bar { margin-left: 86px; padding: 0.3rem 1rem; border-radius: 2px; font-family: Georgia, 'Times New Roman', serif; font-size: 0.75rem; font-style: italic; letter-spacing: 0.05em; }
+  .era-bar.s1 { background: rgba(139,58,42,0.12); border-left: 3px solid var(--rust); color: var(--rust); }
+  .era-bar.s2 { background: rgba(196,124,46,0.12); border-left: 3px solid var(--ochre); color: #7a5010; }
+  .era-bar.s3 { background: rgba(74,103,65,0.12); border-left: 3px solid var(--moss); color: var(--moss); }
+  .era-bar.s4 { background: rgba(107,58,92,0.12); border-left: 3px solid var(--plum); color: var(--plum); }
+  .era-bar.s5 { background: rgba(61,79,92,0.12); border-left: 3px solid var(--slate); color: var(--slate); }
+  .events-section { padding: 0.5rem 0 1rem 0; }
+  .event { display: flex; align-items: flex-start; margin-bottom: 0.6rem; cursor: pointer; position: relative; }
+  .event:hover .event-card { transform: translateX(3px); box-shadow: 3px 3px 12px rgba(0,0,0,0.12); }
+  .event-year { width: 70px; text-align: right; padding-right: 8px; font-family: Georgia, 'Times New Roman', serif; font-size: 0.9rem; font-weight: 700; line-height: 1.4; flex-shrink: 0; color: var(--ink); }
+  .event-year.small { font-size: 0.72rem; font-weight: 400; color: #666; }
+  .event-node { width: 16px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.35rem; position: relative; z-index: 1; }
+  .event-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--parchment); flex-shrink: 0; }
+  .dot-s1 { background: var(--rust); }
+  .dot-s2 { background: var(--ochre); }
+  .dot-s3 { background: var(--moss); }
+  .dot-s4 { background: var(--plum); }
+  .dot-s5 { background: var(--slate); }
+  .dot-pivot { width: 16px !important; height: 16px !important; border: 3px solid var(--parchment) !important; box-shadow: 0 0 0 2px currentColor; }
+  .event-card { flex: 1; margin-left: 0.8rem; padding: 0.6rem 0.9rem; border-radius: 4px; background: white; border: 1px solid #e0d8ca; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .event-card.pivot { border-width: 2px; }
+  .event-card.s1 { border-color: #c4a090; }
+  .event-card.s2 { border-color: #d4b070; }
+  .event-card.s3 { border-color: #90b080; }
+  .event-card.s4 { border-color: #b080a0; }
+  .event-card.s5 { border-color: #8090a0; }
+  .event-card.pivot.s1 { background: #fdf5f2; border-color: var(--rust); }
+  .event-card.pivot.s2 { background: #fdf8f0; border-color: var(--ochre); }
+  .event-card.pivot.s3 { background: #f2f7f0; border-color: var(--moss); }
+  .event-card.pivot.s4 { background: #f8f2f6; border-color: var(--plum); }
+  .event-card.pivot.s5 { background: #f0f3f7; border-color: var(--slate); }
+  .event-title { font-weight: 600; font-size: 0.88rem; line-height: 1.3; color: var(--ink); }
+  .event-tag { display: inline-block; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.1rem 0.4rem; border-radius: 2px; margin-bottom: 0.25rem; }
+  .tag-s1 { background: rgba(139,58,42,0.1); color: var(--rust); }
+  .tag-s2 { background: rgba(196,124,46,0.1); color: #7a5010; }
+  .tag-s3 { background: rgba(74,103,65,0.1); color: var(--moss); }
+  .tag-s4 { background: rgba(107,58,92,0.1); color: var(--plum); }
+  .tag-s5 { background: rgba(61,79,92,0.1); color: var(--slate); }
+  .era-bar.sv { background: rgba(46,107,107,0.12); border-left: 3px solid var(--teal); color: #1a5050; }
+  .event-card.sv { border-color: #70b0a8; }
+  .event-card.pivot.sv { background: #f0f7f6; border-color: var(--teal); }
+  .dot-sv { background: var(--teal); }
+  .tag-sv { background: rgba(46,107,107,0.1); color: var(--teal); }
+  .event-card.utopia { border-color: #c09060; }
+  .event-card.pivot.utopia { background: #fdf8f0; border-color: var(--amber); }
+  .dot-utopia { background: var(--amber); }
+  .tag-utopia { background: rgba(184,106,26,0.1); color: var(--amber); }
+  .voix-header { margin-left: 86px; margin-top: 1.8rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .voix-header-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--teal), transparent); }
+  .voix-header-label { font-family: Georgia, 'Times New Roman', serif; font-size: 0.75rem; font-style: italic; color: var(--teal); letter-spacing: 0.06em; white-space: nowrap; }
+  .sub-event { margin-left: 1.6rem; }
+  .sub-event .event-dot { width: 9px !important; height: 9px !important; }
+  .section-spacer { height: 1.5rem; }
+  .detail-panel { width: 340px; flex-shrink: 0; position: sticky; top: 1rem; align-self: flex-start; }
+  .panel-inner { background: var(--ink); color: var(--parchment); border-radius: 6px; padding: 1.8rem; min-height: 300px; }
+  .panel-year { font-family: Georgia, 'Times New Roman', serif; font-size: 2.4rem; font-weight: 700; line-height: 1; color: var(--gold); margin-bottom: 0.5rem; }
+  .panel-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.7rem; }
+  .panel-body { font-size: 0.84rem; line-height: 1.75; color: #d0c8bc; }
+  .panel-quote { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 0.8rem; margin: 0.8rem 0; line-height: 1.6; }
+  .panel-question { margin-top: 1rem; font-size: 0.79rem; font-style: italic; color: var(--mist); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.7rem; }
+  .panel-link { margin-top: 0.8rem; }
+  .panel-link a { font-size: 0.77rem; color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .panel-empty { display: flex; align-items: center; justify-content: center; height: 200px; font-style: italic; color: var(--mist); font-size: 0.85rem; text-align: center; line-height: 1.6; }
+  footer { text-align: center; padding: 1.5rem; font-size: 0.75rem; color: #888; font-style: italic; border-top: 1px solid #d4c9b5; margin-top: 2rem; }
+  .overlay-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; }
+  .overlay-backdrop.open { display: block; }
+  .overlay-drawer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 101; background: var(--ink); color: var(--parchment); border-radius: 16px 16px 0 0; padding: 0 1.5rem 2rem 1.5rem; max-height: 80vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); }
+  .overlay-drawer.open { transform: translateY(0); }
+  .overlay-handle { display: flex; justify-content: center; padding: 0.75rem 0 0.5rem; cursor: pointer; }
+  .overlay-handle-bar { width: 40px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; }
+  .overlay-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; color: var(--mist); font-size: 1.4rem; cursor: pointer; }
+  .overlay-year { font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 0.3rem; }
+  .overlay-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.6rem; }
+  .overlay-body { font-size: 0.84rem; line-height: 1.7; color: #d0c8bc; }
+  .overlay-quote { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); border-left: 2px solid var(--gold); padding-left: 0.8rem; margin: 0.7rem 0; line-height: 1.5; }
+  .overlay-question { margin-top: 0.8rem; font-size: 0.79rem; font-style: italic; color: var(--mist); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.6rem; }
+  .overlay-link { margin-top: 0.7rem; }
+  .overlay-link a { font-size: 0.77rem; color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  @media (max-width: 700px) {
+    header { padding: 1.2rem 1rem; }
+    header h1 { font-size: 1.3rem; }
+    .legend { padding: 0.6rem 1rem; gap: 0.8rem; }
+    .main { padding: 1rem 0.5rem; }
+    .detail-panel { display: none; }
+    .event-year { width: 48px; font-size: 0.8rem; }
+    .timeline-axis { left: 56px; }
+    .era-label { width: 48px; font-size: 0.6rem; }
+    .era-bar { margin-left: 60px; font-size: 0.7rem; }
+    .sub-event { margin-left: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>L'habitant-chercheur - stratigraphie d'une émergence</h1>
+  <p class="subtitle">Du sol épistémique à la figure nommée · Tiers secteur de la recherche · France · 1970-2026</p>
+  <div class="epigraph">
+    Le sol était prêt avant que la figure soit nommée. L'habitant chercheur n'est pas une anomalie - c'est une émergence logique d'un champ qui s'est préparé sur cinquante ans.
+    <span class="author">Note de posture - habitant-chercheur automissionné, Boischaut Sud</span>
+  </div>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--rust)"></div> Sol épistémique</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--ochre)"></div> Structuration du champ</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--moss)"></div> La figure nommée</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--plum)"></div> Accélération &amp; institutionnalisation</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--slate)"></div> Incubation personnelle &amp; horizon</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Voix compagnes</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Incubation Utopia/CARe</div>
+  <div class="legend-item" style="font-size:0.72rem; color:#888; border-left:1px solid #ccc; padding-left:1rem;">Cliquer sur un jalon pour le détail</div>
+</div>
+
+<div class="main">
+  <div class="timeline-col">
+    <div class="timeline-axis"></div>
+
+    <!-- STRATE 1 : SOL ÉPISTÉMIQUE -->
+    <div class="era">
+      <div class="era-label">Strate 1</div>
+      <div class="era-bar s1">Sol épistémique - les racines longues (1970s-2002)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1970s"
+        data-title="La recherche participative - naissance dans les Suds"
+        data-body="Le terme 'participatory research' est forgé dans les années 1970 pour décrire des processus de création de savoirs au niveau des villages, d'abord en Tanzanie puis en Afrique et en Amérique latine. Le travail combine investigation sociale, éducation et action dans un processus interdépendant. En 1976, le Réseau International de Recherche Participative est créé dans le cadre du Conseil International pour l'Éducation des Adultes. Ces approches nourrissent directement ce que Paulo Freire appelle la pédagogie des opprimés : les savoirs des dominés sont des savoirs à part entière."
+        data-quote="Le savoir du praticien est construit et valorisé dans une réalité qui se distingue de celle du chercheur."
+        data-question="Qu'est-ce qui, dans cette généalogie des Suds, résonne avec l'expérience des territoires ruraux français ?"
+        data-link="">
+        <div class="event-year">1970s</div>
+        <div class="event-node"><div class="event-dot dot-s1 dot-pivot"></div></div>
+        <div class="event-card s1 pivot">
+          <span class="event-tag tag-s1">Sol épistémique - Généalogie</span>
+          <div class="event-title">Naissance de la recherche participative - les Suds, Freire, les savoirs des praticiens</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1970s"
+        data-title="Les Boutiques des Sciences - premières interfaces université/société civile"
+        data-body="Le concept naît dans les années 1970 aux Pays-Bas et aux États-Unis, puis se développe dans les années 1980 en Europe dont la France. Les boutiques des sciences sont des structures qui permettent à des associations, syndicats, groupes de citoyens de formuler une question de recherche et d'être mis en lien avec des équipes universitaires. La question vient du terrain, pas du laboratoire. C'est l'inversion fondatrice."
+        data-quote=""
+        data-question="Qui formule la question de recherche ? C'est là que tout se joue."
+        data-link="https://theconversation.com/quand-chercheurs-et-citoyens-cooperent-109892">
+        <div class="event-year small">1970s<br>France: 1980s</div>
+        <div class="event-node"><div class="event-dot dot-s1"></div></div>
+        <div class="event-card s1">
+          <span class="event-tag tag-s1">Sol épistémique</span>
+          <div class="event-title">Boutiques des Sciences - la question vient du terrain, pas du labo</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1989"
+        data-title="STOC - premières sciences participatives en biodiversité en France"
+        data-body="Le Suivi Temporel des Oiseaux Communs (STOC), coordonné par le Muséum national d'Histoire naturelle, marque l'émergence des sciences participatives en biodiversité en France telles qu'on les connaît. Le citoyen-observateur devient producteur de données scientifiques valides. C'est le premier dispositif systématique qui reconnaît explicitement la capacité cognitive du non-professionnel."
+        data-quote=""
+        data-question=""
+        data-link="">
+        <div class="event-year">1989</div>
+        <div class="event-node"><div class="event-dot dot-s1"></div></div>
+        <div class="event-card s1">
+          <span class="event-tag tag-s1">Sol épistémique - France</span>
+          <div class="event-title">STOC - premières sciences participatives en biodiversité (MNHN)</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="1990s"
+        data-title="Basculement du paradigme du déficit vers le droit à s'exprimer"
+        data-body="Le modèle dit 'du déficit de connaissances' - qui postulait l'absence de culture scientifique chez le public et donc son incapacité à juger - est dépassé."
+        data-quote="Le paradigme du deficit s'est trouve dépassé a partir des annees 1990 par un changement radical de perspective voulant que tout citoyen a le droit de s'exprimer sur les enjeux qui ont une incidence sur son existence."
+        data-question="De quoi ce basculement est-il la condition de possibilité ?"
+        data-link="">
+        <div class="event-year">1990s</div>
+        <div class="event-node"><div class="event-dot dot-s1 dot-pivot"></div></div>
+        <div class="event-card s1 pivot">
+          <span class="event-tag tag-s1">Sol épistémique - Pivot philosophique</span>
+          <div class="event-title">Fin du paradigme du déficit - tout citoyen a le droit de s'exprimer sur les enjeux qui le concernent</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- STRATE 2 : STRUCTURATION DU CHAMP -->
+    <div class="era">
+      <div class="era-label">Strate 2</div>
+      <div class="era-bar s2">Structuration du champ - la société civile prend la plume (2002-2016)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2002"
+        data-title="Fondation Sciences Citoyennes - le tiers-secteur scientifique comme projet politique"
+        data-body="Création de l'association Sciences Citoyennes (qui portait jusqu'en 2015 le nom Association pour une Fondation sciences citoyennes). Dès 2003, elle publie la première note sur le tiers-secteur scientifique. La définition posée alors : les initiatives de la société civile - associations, citoyens, collectifs de praticiens - qui produisent des connaissances en poursuivant un objectif d'intérêt général, dont les résultats sont appropriables par toutes et tous. Ce n'est pas une méthode - c'est un projet politique."
+        data-quote="Le développement du tiers-secteur scientifique participe de la construction d'un nouveau rapport entre les sciences et la société, légitimant les savoirs des non-chercheurs jusqu'alors non reconnus par la recherche traditionnelle."
+        data-question=""
+        data-link="https://sciencescitoyennes.org/">
+        <div class="event-year">2002</div>
+        <div class="event-node"><div class="event-dot dot-s2 dot-pivot"></div></div>
+        <div class="event-card s2 pivot">
+          <span class="event-tag tag-s2">Structuration - Fondation</span>
+          <div class="event-title">Sciences Citoyennes - naissance du tiers-secteur scientifique comme projet politique</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2005"
+        data-title="Renaissance des Boutiques des Sciences en France - ENS Cachan"
+        data-body="Le concept des boutiques des sciences renaît en 2005 à l'ENS Cachan, porté par des étudiants avec l'aide de Sciences Citoyennes. Elles créent une interface entre les questions formulées par des associations et des équipes de recherche universitaires. Le dispositif pose un principe cardinal : c'est le demandeur associatif qui formule la question, l'étudiant-chercheur qui l'instruit, et les résultats sont publics et accessibles."
+        data-quote=""
+        data-question=""
+        data-link="https://theconversation.com/quand-chercheurs-et-citoyens-cooperent-109892">
+        <div class="event-year">2005</div>
+        <div class="event-node"><div class="event-dot dot-s2"></div></div>
+        <div class="event-card s2">
+          <span class="event-tag tag-s2">Structuration - Dispositif</span>
+          <div class="event-title">Renaissance des Boutiques des Sciences en France (ENS Cachan / Sciences Citoyennes)</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2013"
+        data-title="Sciences Citoyennes - premier état des lieux de la recherche participative en France"
+        data-body="Publication du rapport coordonné par Storup : 'La recherche participative comme mode de production de savoirs. Un état des lieux des pratiques en France.' 94 pages. Premier panorama systématique du champ en France. Il documente une nébuleuse d'initiatives encore fragmentées, peu reconnues, peu financées - mais réelles et croissantes."
+        data-quote=""
+        data-question="Qu'est-ce que cet état des lieux dit de l'invisibilité systémique des praticiens-chercheurs ?"
+        data-link="https://sciencescitoyennes.org/rechercheparticipative/">
+        <div class="event-year">2013</div>
+        <div class="event-node"><div class="event-dot dot-s2"></div></div>
+        <div class="event-card s2">
+          <span class="event-tag tag-s2">Structuration - Rapport</span>
+          <div class="event-title">Storup / Sciences Citoyennes - premier état des lieux de la recherche participative en France</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2016"
+        data-title="Rapport Houllier - reconnaissance institutionnelle des sciences participatives"
+        data-body="Le rapport Houllier et Merilhou-Goudard, commandé par le ministère, définit officiellement les sciences participatives comme 'les formes de production de connaissances scientifiques auxquelles des acteurs non-scientifiques-professionnels participent de façon active et délibérée.' Il constate que les programmes de financement dédiés, encore peu nombreux, sont en plein développement. C'est l'entrée dans le vocabulaire institutionnel - avec tout ce que cela porte de reconnaissance et de risque de capture."
+        data-quote="Les sciences participatives : des formes de production de connaissances scientifiques auxquelles des acteurs non-scientifiques-professionnels participent de façon active et délibérée."
+        data-question="Que gagne-t-on et que perd-on quand une pratique entre dans le vocabulaire institutionnel ?"
+        data-link="">
+        <div class="event-year">2016</div>
+        <div class="event-node"><div class="event-dot dot-s2 dot-pivot"></div></div>
+        <div class="event-card s2 pivot">
+          <span class="event-tag tag-s2">Structuration - Reconnaissance institutionnelle</span>
+          <div class="event-title">Rapport Houllier - les sciences participatives entrent dans le vocabulaire officiel</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2016"
+        data-title="Sciences Citoyennes - dispositif tiers-veilleur"
+        data-body="Avec le soutien de la Fondation de France, Sciences Citoyennes expérimente le dispositif tiers-veilleur pour accompagner la co-construction des savoirs dans les projets de recherche participative. Le tiers-veilleur est une figure d'accompagnement - ni chercheur académique, ni acteur de terrain - qui apporte un regard extérieur au collectif : observation, appui, conseil, réflexivité."
+        data-quote=""
+        data-question="En quoi la figure du tiers-veilleur préfigure-t-elle celle de l'habitant-chercheur automissionné ?"
+        data-link="https://sciencescitoyennes.org/rechercheparticipative/">
+        <div class="event-year small">2016</div>
+        <div class="event-node"><div class="event-dot dot-s2"></div></div>
+        <div class="event-card s2">
+          <span class="event-tag tag-s2">Structuration - Figure intermédiaire</span>
+          <div class="event-title">Dispositif tiers-veilleur - une figure d'accompagnement à la frontière</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- STRATE 3 : LA FIGURE NOMMÉE -->
+    <div class="era">
+      <div class="era-label">Strate 3</div>
+      <div class="era-bar s3">La figure nommée - l'habitant-chercheur apparaît (2018)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2018"
+        data-title="Bories, Ribrault et al. - L'habitant-chercheur : nouvelle figure des sciences impliquées"
+        data-body="L'article présente une collaboration scientifique autour des jardins privés comme espaces de biodiversité. Les chercheurs ont été sollicités pour mettre en œuvre une recherche sur un questionnement initié par les habitants. L'expérience accorde une place centrale à la coconstruction des méthodes et des connaissances dans la durée. La figure émerge par le bas, depuis une pratique de terrain dans le champ du paysage - pas depuis la sociologie ou la RAP."
+        data-quote="« Nous introduisons la figure de l’« habitant-chercheur » pour exprimer les changements de posture chez les participants. »"
+        data-question="Pourquoi la figure a-t-elle émergé depuis le champ du paysage et non depuis les sciences sociales ? Que dit cette trajectoire du sol d'où elle provient ?"
+        data-link="https://www.projetsdepaysage.fr/l_habitant_chercheur_nouvelle_figure_des_sciences_impliqu_es">
+        <div class="event-year">2018</div>
+        <div class="event-node"><div class="event-dot dot-s3 dot-pivot"></div></div>
+        <div class="event-card s3 pivot">
+          <span class="event-tag tag-s3">Figure nommée - Texte fondateur</span>
+          <div class="event-title">Bories, Ribrault et al. - « L'habitant-chercheur : nouvelle figure des sciences impliquées » (Projets de paysage, 2018)</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2018"
+        data-title="Ce que nomme cet article - et ce qu'il ne dit pas encore"
+        data-body="L'article de Bories et al. nomme un changement de posture chez des habitants engagés dans une démarche de recherche. Mais la figure reste attachée à un dispositif encadré par des chercheurs académiques : ce sont eux qui co-construisent les méthodes avec les habitants. Ce que l'article ne dit pas encore : l'habitant-chercheur automissionné - celui qui s'auto-mandate, sans institution porteuse, sans laboratoire d'accueil, depuis son propre territoire vécu. Cette figure-là reste à construire."
+        data-quote=""
+        data-question="Quelle est la différence entre l'habitant-chercheur dans un dispositif académique, et l'habitant-chercheur automissionné ?"
+        data-link="">
+        <div class="event-year small">2018<br>lacune</div>
+        <div class="event-node"><div class="event-dot dot-s3"></div></div>
+        <div class="event-card s3">
+          <span class="event-tag tag-s3">Figure nommée - Limite et ouverture</span>
+          <div class="event-title">Ce que la figure nomme - et ce qu'elle ne dit pas encore : l'automission</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- STRATE 4 : ACCÉLÉRATION -->
+    <div class="era">
+      <div class="era-label">Strate 4</div>
+      <div class="era-bar s4">Accélération &amp; institutionnalisation - tensions du champ (2018-2024)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2018"
+        data-title="Naissance du MSER - Mouvement pour des Savoirs Engagés et Reliés"
+        data-body="Une quinzaine d'organisations se fédèrent dans un mouvement qui revendique explicitement le projet politique du tiers-secteur de la recherche : croiser monde de la recherche et mouvements sociaux pour la transition écologique et solidaire. Le Manifeste des SER, ouvert à la signature individuelle, affirme que d'autres sciences sont possibles, déjà en émergence. Le MSER est distinct de Sciences Citoyennes - il est plus militant, plus ancré dans les mouvements sociaux."
+        data-quote="Nous affirmons que d'autres sciences sont possibles, qu'elles sont déjà en émergence, et que c'est en les reliant, par delà les silos institutionnels, sociaux et disciplinaires que nous construirons les savoirs robustes et pluriels dont nous avons besoin."
+        data-question=""
+        data-link="https://www.mouvement-ser.org/">
+        <div class="event-year">2018</div>
+        <div class="event-node"><div class="event-dot dot-s4"></div></div>
+        <div class="event-card s4">
+          <span class="event-tag tag-s4">Accélération - Coalition</span>
+          <div class="event-title">MSER - Mouvement pour des Savoirs Engagés et Reliés</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2020"
+        data-title="Bocquet & Blangy - La RAP, parce que le jour d'après n'est pas écrit"
+        data-body="Article publié en juin 2020 au lendemain du premier confinement. Il pose la RAP comme réponse nécessaire aux défis sociétaux : ancrée dans trois dimensions indissociables - production de connaissances, application à des problématiques concrètes, implication citoyenne à toutes les étapes. Les ateliers de RAP y sont qualifiés d'incubateurs de projets structurants et fédérateurs. Bertrand Bocquet sera l'un des formateurs du certificat CNAM/Sciences Citoyennes."
+        data-quote="Le jour d'après de la recherche ne peut assurément plus prendre les formes antérieures. De trop nombreuses initiatives mêlant technologies et pratiques sociales ont répondu et atténué la catastrophe."
+        data-question=""
+        data-link="">
+        <div class="event-year">2020</div>
+        <div class="event-node"><div class="event-dot dot-s4 dot-pivot"></div></div>
+        <div class="event-card s4 pivot">
+          <span class="event-tag tag-s4">Accélération - Texte de référence</span>
+          <div class="event-title">Bocquet &amp; Blangy - « La RAP, parce que le jour d'après n'est pas écrit »</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2021"
+        data-title="Label SAPS - Science avec et pour la société - et la question du D"
+        data-body="La loi de programmation de la recherche (LPR) de décembre 2020 inscrit le label SAPS comme dispositif national. Délivré par le MESRI aux universités répondant à quatre critères, il vise à structurer les interfaces entre recherche et société : médiation, recherche participative, formation, partenariats territoriaux. En trois vagues (2021, 2022, 2024), 34 universités ont été labellisées. La formule retenue - science AVEC et POUR la société - reconnaît deux postures : collaborer avec les acteurs non académiques, produire pour eux. Mais une question reste posée : et si on ajoutait un D ? Science avec, pour et DEPUIS la société - c'est-à-dire produite non pas depuis le laboratoire vers la société, mais initiée depuis l'expérience habitante elle-même, depuis le premier kilomètre du vécu. Ce D n'est pas une nuance rhétorique : il marque un déplacement du qui (le chercheur académique qui s'ouvre), du où (le territoire vécu comme site de production) et du comment (la systématisation d'expérience comme méthode, non la validation disciplinaire)."
+        data-quote="La relation science-société doit désormais être reconnue comme une dimension à part entière de l'activité scientifique."
+        data-question="Qu'est-ce que le D ajoute que le AVEC et le POUR ne disent pas ? Qui produit les connaissances, depuis où, et selon quelle méthode ?"
+        data-link="https://www.enseignementsup-recherche.gouv.fr/fr/criteres-du-label-science-avec-et-pour-la-societe-saps-49490">
+        <div class="event-year">2021</div>
+        <div class="event-node"><div class="event-dot dot-s4 dot-pivot"></div></div>
+        <div class="event-card s4 pivot">
+          <span class="event-tag tag-s4">Accélération - Label officiel</span>
+          <div class="event-title">Label SAPS (LPR 2020) - science avec et pour la société - et si on ajoutait le D de depuis ?</div>
+        </div>
+      </div>
+
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2022"
+        data-title="ANR - premier appel Recherches participatives (et ses tensions)"
+        data-body="L'Agence nationale de la recherche ouvre son premier appel dédié aux recherches participatives. Sciences Citoyennes émet des réserves fondamentales : le texte ne précise pas ce que l'ANR entend par enjeux sociétaux, ouvrant potentiellement la porte à des partenaires sans finalité de bien commun. La tension se cristallise ici : institutionnalisation du concept vs. projet politique du tiers-secteur. Ce que le champ gagne en visibilité, il risque de le perdre en radicalité."
+        data-quote="Les pratiques de recherche participative doivent viser le bien commun - elles doivent être menées avec les acteurs du tiers-secteur scientifique qui ont le bien commun comme finalité, et non la défense d'intérêts privés."
+        data-question="Peut-on institutionnaliser sans neutraliser ?"
+        data-link="">
+        <div class="event-year">2022</div>
+        <div class="event-node"><div class="event-dot dot-s4"></div></div>
+        <div class="event-card s4">
+          <span class="event-tag tag-s4">Accélération - Tension institutionnelle</span>
+          <div class="event-title">ANR Recherches participatives - entre reconnaissance et risque de capture</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2024"
+        data-title="CNAM / Sciences Citoyennes - Certificat Recherche participative niveau 7"
+        data-body="Première formation certifiante sur les pratiques de recherche participative, co-construite par le CNAM et Sciences Citoyennes. Niveau 7, prolongeable en master. La première promotion, diplômée en septembre 2025, rassemble des acteurs d'horizons très différents : salariés associatifs, citoyens en reconversion, chercheurs académiques. Bertrand Bocquet est formateur. La deuxième promotion se déroule de mars à novembre 2026."
+        data-quote="Il y a autant de recherches participatives que de situations et de personnes. La formation ne donne pas une méthode clé en main, mais des repères et la capacité de se poser les questions qui ont du sens pour son projet."
+        data-question=""
+        data-link="https://sciencescitoyennes.org/formation-professionnelle-continue-recherche-participative-2eme-promotion/">
+        <div class="event-year">2024</div>
+        <div class="event-node"><div class="event-dot dot-s4"></div></div>
+        <div class="event-card s4">
+          <span class="event-tag tag-s4">Accélération - Formation</span>
+          <div class="event-title">CNAM / Sciences Citoyennes - Certificat Recherche participative (niveau 7)</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- VOIX COMPAGNES -->
+    <div class="era">
+      <div class="era-label">Voix</div>
+      <div class="era-bar sv">Voix compagnes - penseurs qui ont préparé le sol ou nomment ce qui manquait</div>
+    </div>
+    <div class="voix-header">
+      <div class="voix-header-line"></div>
+      <div class="voix-header-label">Auteurs, textes et interventions qui résonent avec cette stratigraphie</div>
+      <div class="voix-header-line"></div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2011"
+        data-title="Wiggins et Crowston - Agir local, agenda civique et Sciences citoyennes"
+        data-body="Dans leur typologie des sciences citoyennes, Wiggins et Crowston distinguent cinq types de projets. Le type Conservation (action locale) est fondateur pour ce qui nous concerne : ce sont des projets qui ne sont pas d'abord des projets scientifiques, mais d'abord des projets citoyens qui nécessitent un soutien scientifique. Les chercheurs y sont plutôt des consultants ou des collaborateurs que les initiateurs. Le groupe et ses objets d'intérêt pré-existent au besoin méthodologique et scientifique. C'est ce que la formation Callisto nomme agenda civique : une mobilisation qui précède la traduction en projet académique. Cette inversion - le projet citoyen qui appelle la recherche, et non l'inverse - est l'une des conditions de possibilité de la figure de l'habitant-chercheur automissionné."
+        data-quote="Les chercheurs y sont plutôt des consultants ou des collaborateurs que les initiateurs."
+        data-question="Qu'est-ce qu'un agenda civique ? En quoi Utopia/CARe en est-il un ?"
+        data-link="">
+        <div class="event-year">2011</div>
+        <div class="event-node"><div class="event-dot dot-sv"></div></div>
+        <div class="event-card sv">
+          <span class="event-tag tag-sv">Voix compagne - Taxonomie</span>
+          <div class="event-title">Wiggins et Crowston - l'agenda civique qui précède et appelle la recherche</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2023"
+        data-title="Anouk Barberousse - Sciences confinées, connaissances systémiques"
+        data-body="Philosophe des sciences, directrice de l'Institut pour la transition environnementale (Alliance Sorbonne), Anouk Barberousse pose une question honnête : pourquoi les chercheurs des établissements intensifs peinent-ils à produire les connaissances systémiques que la transition écologique requiert ? Sa réponse : les cultures de recherche travaillent contre cette exigence. Dix à douze ans de formation disciplinaire forgent des réflexes d'évaluation rapide et de jugement tranché - utiles pour avancer dans un champ, destructeurs pour défricher aux marges. Elle nomme ce décalage sans détour : une part d'hypocrisie. Ce que Barberousse ne voit pas - et que le DEPUIS rend visible : elle reste dans un régime épistémique où c'est toujours le chercheur institutionnel qui, depuis son poste, doit s'ouvrir vers la société. Le renversement opéré par la science depuis la société est d'un autre ordre : ce ne sont pas les chercheurs qui descendent vers les territoires - ce sont les questions qui naissent depuis le vécu, l'enquête habitante, le premier kilomètre. Les connaissances systémiques qu'elle appelle de ses voeux existent déjà dans les pratiques habitantes, sous forme tacite, distribuée, non validée institutionnellement."
+        data-quote="Malgré les slogans institutionnels, en général ce qu'on attend c'est une bonne recherche disciplinaire - c'est ça qui est financé."
+        data-question="Barberousse décrit en creux ce que la science confinée ne peut pas faire. En quoi l'habitant-chercheur est-il une réponse à cette limite ?"
+        data-link="https://www.youtube.com/watch?v=pUvTtumirn8">
+        <div class="event-year">2023</div>
+        <div class="event-node"><div class="event-dot dot-sv dot-pivot"></div></div>
+        <div class="event-card sv pivot">
+          <span class="event-tag tag-sv">Voix compagne - Epistemologie</span>
+          <div class="event-title">Anouk Barberousse - les sciences confinées ne produisent pas les connaissances systémiques dont la transition a besoin</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2024"
+        data-title="Laurent Marty - Comment j'ai appris l'indiscipline à l'université"
+        data-body="Anthropologue, Laurent Marty raconte de l'intérieur comment l'institution universitaire fabrique de la discipline - au double sens : de la disciplinarité scientifique et de l'obéissance normative. Apprendre l'indiscipline, c'est apprendre à penser contre les réflexes de conformité que la formation académique installe. Ce texte est une voix compagne parce qu'il nomme, depuis l'intérieur de l'institution, exactement ce que l'habitant-chercheur doit traverser pour exister : se déprendre des catégories dominantes de la légitimité scientifique. Il est aussi une voix biographique directement reliée à ce parcours - l'échange avec Marty autour d'Ardoino et de la culture de l'autorisation (2019) est l'un des fils de la thèse en cours. Son texte ouvre la question : peut-on apprendre l'indiscipline sans avoir été discipliné d'abord ? Et qu'est-ce que ça change quand on n'a jamais été institutionnalisé ?"
+        data-quote=""
+        data-question="Peut-on apprendre l'indiscipline sans avoir été discipliné d'abord ? L'habitant-chercheur automissionné est-il déjà dans un régime d'indiscipline constitutive ?"
+        data-link="https://journals.openedition.org/revss/403?lang=fr">
+        <div class="event-year">2024</div>
+        <div class="event-node"><div class="event-dot dot-sv"></div></div>
+        <div class="event-card sv">
+          <span class="event-tag tag-sv">Voix compagne - Biographique</span>
+          <div class="event-title">Laurent Marty - Comment j'ai appris l'indiscipline a l'université</div>
+        </div>
+      </div>
+      <div class="event" onclick="showDetail(this)"
+        data-year="2025"
+        data-title="Cynthia Fleury - tous les savoirs ont une valeur"
+        data-body="Philosophe, psychanalyste, titulaire de la Chaire de philosophie à l'hôpital (GHU Paris), Cynthia Fleury porte depuis plusieurs années une philosophie du soin et de la vulnérabilité qui réhabilite les savoirs des soignés, des aidants, des habités. Dans ses prises de position récentes, elle affirme que tous les savoirs ont une valeur - pas comme relativisme, mais comme exigence épistémique et politique. Les savoirs du vécu, de l'expérience ordinaire, de la robustesse quotidienne sont des savoirs à part entière, qu'il faut apprendre à accueillir et à faire travailler avec les savoirs experts. C'est la condition d'une médecine et d'un soin qui ne soient pas épuisés par la seule logique de la performance. Cette voix est directement reliée à CARe Robustesse et Soin, communauté animée par Julie Chabaud et émergée du workshop de décembre 2025 à la Chaire. Fleury est une alliée capacitante de l'horizon Utopia."
+        data-quote=""
+        data-question="En quoi la philosophie du soin de Fleury rejoint-elle l'épistémologie du premier kilomètre ?"
+        data-link="https://www.youtube.com/live/EZiH9geE-yc?si=jeysAhFV0hDiSFuP&t=2081">
+        <div class="event-year">2025</div>
+        <div class="event-node"><div class="event-dot dot-sv dot-pivot"></div></div>
+        <div class="event-card sv pivot">
+          <span class="event-tag tag-sv">Voix compagne - Philosophie du soin</span>
+          <div class="event-title">Cynthia Fleury - tous les savoirs ont une valeur - philosophie du soin et réhabilitation des savoirs du vécu</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-spacer"></div>
+
+    <!-- STRATE 5 : INCEPTION PERSONNELLE -->
+    <div class="era">
+      <div class="era-label">Strate 5</div>
+      <div class="era-bar s5">Incubation personnelle &amp; l'horizon d'un habitant-chercheur automissionné (2018-2026)</div>
+    </div>
+    <div class="events-section">
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2018"
+        data-title="Ce qui s'incubait - avant les mots du champ"
+        data-body="Avant que le champ national lui donne un nom, plusieurs gestes inauguraux posaient déjà la posture de l'habitant-chercheur : - La culture de l'autorisation (Ardoino/Valadier) travaillée avec Laurent Marty - le droit de s'auto-mandater sans institution porteuse. - La participation au séminaire Intelligence territoriale à Cluny (2020) : première reconnaissance externe de la posture de citoyen-chercheur. - L'inscription habitant-chercheur automissionné dans le profil LinkedIn : acte d'affirmation publique de la figure, avant qu'elle soit théorisée. - La réponse à l'appel à projet TLDEM avec la double étiquette habitant-chercheur / tiers-veilleur : première traduction institutionnelle de la posture."
+        data-quote=""
+        data-question="Qu'est-ce qui était déjà là, avant les mots ? Qu'est-ce que ces gestes inauguraux disent d'une posture qui s'est construite par le faire, pas par la formation ?"
+        data-link="">
+        <div class="event-year">2018</div>
+        <div class="event-node"><div class="event-dot dot-s5 dot-pivot"></div></div>
+        <div class="event-card s5 pivot">
+          <span class="event-tag tag-s5">Incubation - Ce qui précède le nom</span>
+          <div class="event-title">Ce qui s'incubait déjà - avant que le champ lui donne un nom</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2021"
+        data-title="Mars 2025 - Entrée dans la RAP Creuse - première inscription formelle dans le champ"
+        data-body=""
+        data-quote="Agir en son lieu penser avec le monde - Edouard Glissant"
+        data-question=""
+        data-link="">
+        <div class="event-year">mars<br>2025</div>
+        <div class="event-node"><div class="event-dot dot-s5"></div></div>
+        <div class="event-card s5">
+          <span class="event-tag tag-s5">Incubation - Entrée dans le champ</span>
+          <div class="event-title">Mars 2025 - Entrée dans la RAP Creuse - première inscription formelle dans le champ par la pratique</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="23 mars"
+        data-title="23 mars 2026 - Journée bilan et perspectives - faire RAP sur RAP"
+        data-body="Moment de systématisation d'expérience au sens d'Oscar Jara : Vivre - Classer - Élucider - Créer. Nommer les tensions réelles sans les esquiver : les asymétries entre parties prenantes font que la coproduction est largement revendiquée, mais encore difficile à incarner dans les pratiques. La posture de recherche au coeur des débats : dépasser les postures surplombantes comme les retraits prudents. La valeur de la RAP réside dans la mise en dialogue des savoirs - les pratiques de terrain comme ressources de connaissance, les cadres théoriques comme outils de transformation. Question ouverte : vers quoi s'incube la suite en montrant d'où l'on parle, sur quel sol on se tient. Horizon à viser : un monde associatif en recherche-action permanente, où le collectif n'est pas seulement un cadre contractuel de confiance."
+        data-quote="Les expériences les plus fécondes sont celles où le collectif devient un espace de traduction, de conflictualité constructive et de confiance, capable de reconnaître les désaccords, d'en faire des ressources et de penser le temps long."
+        data-question="Sur quel sol nous tenons-nous ? Qui, parmi nous, se reconnaît dans ce que le champ appelle maintenant un habitant-chercheur ?"
+        data-link="">
+        <div class="event-year small">23 mars<br>2026</div>
+        <div class="event-node"><div class="event-dot dot-s5 dot-pivot"></div></div>
+        <div class="event-card s5 pivot">
+          <span class="event-tag tag-s5">Bilan - Pivot</span>
+          <div class="event-title">Journée bilan et perspectives - faire RAP sur RAP · nommer le sol sur lequel on se tient</div>
+        </div>
+      </div>
+
+      <div class="event" onclick="showDetail(this)"
+        data-year="2026→"
+        data-title="Incubation du projet UTOPIA - labo local situé, point relais CARe"
+        data-body="Connecté à la santé commune, le lien entre robustesse et soin est à travailler théoriquement via l'éthique du care et pratiquement en lien avec les soignant.es, les aidant.es, les soigné.es et les institutions de la santé et du soin au sens large. Il s'agit d'explorer, à la fois, les capacités de robustesse nichées au coeur des vulnérabilités et les voies de robustesse d'institutions sociales et sanitaires épuisées par l'addiction à la performance. Utopia s'incube dans le tiers-secteur de la recherche - pas comme une idée isolée, mais comme une émergence logique d'un sol préparé sur cinquante ans."
+        data-quote=""
+        data-question=""
+        data-link="https://larobustesse.org/soin/?PropSoin#">
+        <div class="event-year">2026→</div>
+        <div class="event-node"><div class="event-dot dot-utopia dot-pivot"></div></div>
+        <div class="event-card utopia pivot">
+          <span class="event-tag tag-utopia">Perspectives - Incubation</span>
+          <div class="event-title">Incubation d'un projet de labo local UTOPIA (Tiers secteur de la recherche) - point relais de la communauté apprenante nationale Robustesse et soin</div>
+        </div>
+      </div>
+
+      <div class="event sub-event" onclick="showDetail(this)"
+        data-year="axe 1"
+        data-title="Design with care de territoires robustes"
+        data-body="Dynamiques interdisciplinaires participatives et recherche-création située. Croisements entre médecine, psychologie, sociologie, arts, pratiques thérapeutiques, robustesse territoriale. Alimentation, lieux de vie, territoires et pratiques collectives comme leviers de robustesse. Implication des citoyen.nes, en particulier en situation de vulnérabilité, et des acteurs locaux. Usages privilégiés d'outils libres pour les échanges et la production."
+        data-quote=""
+        data-question=""
+        data-link="https://larobustesse.org/soin/?PropSoin#">
+        <div class="event-year small">axe 1</div>
+        <div class="event-node"><div class="event-dot dot-utopia"></div></div>
+        <div class="event-card utopia">
+          <span class="event-tag tag-utopia">Groupe thématique</span>
+          <div class="event-title">Design with care de territoires robustes</div>
+        </div>
+      </div>
+
+      <div class="event sub-event" onclick="showDetail(this)"
+        data-year="axe 2"
+        data-title="Éthique, politique et transformation sociétale"
+        data-body="Repenser la place du soin et de l'hôpital dans la société, au-delà du duo soignant-soigné avec la boussole de la robustesse. Débattre des valeurs, des communs et des priorités collectives. Promouvoir une gouvernance ouverte, coopérative et participative autour de la robustesse et du care. Résister à l'épuisement, créer du vivant, frayer la joie."
+        data-quote=""
+        data-question=""
+        data-link="https://larobustesse.org/soin/?PropSoin#">
+        <div class="event-year small">axe 2</div>
+        <div class="event-node"><div class="event-dot dot-utopia"></div></div>
+        <div class="event-card utopia">
+          <span class="event-tag tag-utopia">Groupe thématique</span>
+          <div class="event-title">Éthique, politique et transformation sociétale - résister à l'épuisement, créer du vivant, frayer la joie</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /timeline-col -->
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel">
+    <div class="panel-inner">
+      <div class="panel-empty" id="panel-empty">Cliquer sur un jalon<br>pour ouvrir le détail</div>
+      <div id="panel-content" style="display:none">
+        <div class="panel-year" id="p-year"></div>
+        <div class="panel-title" id="p-title"></div>
+        <div class="panel-body" id="p-body"></div>
+        <div class="panel-quote" id="p-quote" style="display:none"></div>
+        <div class="panel-question" id="p-question" style="display:none"></div>
+        <div class="panel-link" id="p-link-wrap" style="display:none">
+          <a id="p-link" href="" target="_blank">Lire la source →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<footer>
+  Tiers secteur de la recherche · Habitant-chercheur automissionné · Boischaut Sud · CC BY-SA · 2026
+</footer>
+
+<script>
+  let active = null;
+  function isMobile() { return window.innerWidth <= 700; }
+  function fillPanel(year, title, body, quote, question, link) {
+    document.getElementById('p-year').textContent = year;
+    document.getElementById('p-title').textContent = title;
+    document.getElementById('p-body').textContent = body;
+    const qEl = document.getElementById('p-quote');
+    if (quote) { qEl.textContent = '« ' + quote + ' »'; qEl.style.display = 'block'; } else { qEl.style.display = 'none'; }
+    const qqEl = document.getElementById('p-question');
+    if (question) { qqEl.textContent = '→ ' + question; qqEl.style.display = 'block'; } else { qqEl.style.display = 'none'; }
+    const lw = document.getElementById('p-link-wrap');
+    if (link) { document.getElementById('p-link').href = link; lw.style.display = 'block'; } else { lw.style.display = 'none'; }
+    document.getElementById('panel-empty').style.display = 'none';
+    document.getElementById('panel-content').style.display = 'block';
+  }
+  function fillOverlay(year, title, body, quote, question, link) {
+    document.getElementById('o-year').textContent = year;
+    document.getElementById('o-title').textContent = title;
+    document.getElementById('o-body').textContent = body;
+    const oq = document.getElementById('o-quote');
+    if (quote) { oq.textContent = '« ' + quote + ' »'; oq.style.display = 'block'; } else { oq.style.display = 'none'; }
+    const oqq = document.getElementById('o-question');
+    if (question) { oqq.textContent = '→ ' + question; oqq.style.display = 'block'; } else { oqq.style.display = 'none'; }
+    const olw = document.getElementById('o-link-wrap');
+    if (link) { document.getElementById('o-link').href = link; olw.style.display = 'block'; } else { olw.style.display = 'none'; }
+    document.getElementById('overlay-backdrop').classList.add('open');
+    document.getElementById('overlay-drawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeOverlay() {
+    document.getElementById('overlay-backdrop').classList.remove('open');
+    document.getElementById('overlay-drawer').classList.remove('open');
+    document.body.style.overflow = '';
+    active = null;
+  }
+  function showDetail(el) {
+    if (!isMobile() && active === el) {
+      active = null;
+      document.getElementById('panel-empty').style.display = 'flex';
+      document.getElementById('panel-content').style.display = 'none';
+      return;
+    }
+    active = el;
+    const d = el.dataset;
+    if (isMobile()) { fillOverlay(d.year, d.title, d.body, d.quote, d.question, d.link || ''); }
+    else { fillPanel(d.year, d.title, d.body, d.quote, d.question, d.link || ''); }
+  }
+  let touchStartY = 0;
+  document.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+  document.addEventListener('touchend', e => {
+    if (document.getElementById('overlay-drawer').classList.contains('open')) {
+      if (e.changedTouches[0].clientY - touchStartY > 60) closeOverlay();
+    }
+  });
+</script>
+
+<div class="overlay-backdrop" id="overlay-backdrop" onclick="closeOverlay()"></div>
+<div class="overlay-drawer" id="overlay-drawer">
+  <div class="overlay-handle" onclick="closeOverlay()"><div class="overlay-handle-bar"></div></div>
+  <button class="overlay-close" onclick="closeOverlay()">&#x2715;</button>
+  <div class="overlay-year" id="o-year"></div>
+  <div class="overlay-title" id="o-title"></div>
+  <div class="overlay-body" id="o-body"></div>
+  <div class="overlay-quote" id="o-quote" style="display:none"></div>
+  <div class="overlay-question" id="o-question" style="display:none"></div>
+  <div class="overlay-link" id="o-link-wrap" style="display:none">
+    <a id="o-link" href="" target="_blank">Lire la source →</a>
+  </div>
+</div>
+
+</body>
+</html>
