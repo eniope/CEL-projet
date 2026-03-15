@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vie associative en Creuse</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #f2ede4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.card {
+  background: #f7f3ec;
+  border: 1px solid #d0c8b8;
+  padding: 1.4rem 0 1.2rem;
+  width: 100%;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.0rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #3a3228;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.1rem;
+  line-height: 1.4;
+  text-align: center;
+  padding: 0 1rem;
+}
+svg { display: block; width: 100%; overflow: visible; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Vie associative en Creuse&nbsp;: un territoire coopératif par son histoire&nbsp;?</h1>
+  <svg id="chart"></svg>
+</div>
+<script>
+const YEAR_START = 1974;
+const YEAR_END   = 2034;
+const YEAR_JALON = 2026 + 83/365;
+const SPAN       = YEAR_END - YEAR_START;
+
+const STRATES = [
+  { label: "Plateaux limousins",  start: 1974, end: 2034, color: "#7a5c2e" },
+  { label: "Aliso",               start: 1997, end: 2034, color: "#3d6b50" },
+  { label: "Café de l'espace",    start: 2010, end: 2034, color: "#3a5580" },
+  { label: "Quincaillerie num.",  start: 2015, end: 2034, color: "#6b3d7a" },
+  { label: "Déclic Nord Creuse",  start: 2015, end: 2034, color: "#2d7a70" },
+  { label: "TELA",                start: 2016, end: 2034, color: "#8b3d3d" }
+];
+
+const SVG_W   = 780;
+const ML = 18, MR = 18;
+const DRAW_W  = SVG_W - ML - MR;
+const MT      = 58;  // espace pour les 3 lignes de texte au-dessus
+const MB      = 38;
+const GAP     = 7;
+const BAR_H   = 38;
+const TOTAL_H = STRATES.length * BAR_H + (STRATES.length - 1) * GAP;
+const START_Y = MT + 4;
+const SVG_H   = START_Y + TOTAL_H + MB + 10;
+
+function xOf(yr) { return ML + (yr - YEAR_START) / SPAN * DRAW_W; }
+
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+const svg = document.getElementById('chart');
+
+const futX   = xOf(YEAR_JALON);
+const futW   = SVG_W - MR - futX;
+const futTop = 4;                     // la zone futurible part du haut du SVG
+const futH   = START_Y + TOTAL_H + 8; // jusqu'en bas des barres
+
+svg.setAttribute('viewBox', `0 0 ${SVG_W} ${SVG_H}`);
+
+/* ── DEFS ───────────────────────────────────────────────────── */
+const defs = el('defs');
+
+const pat = el('pattern', { id:'hatch', x:0, y:0, width:10, height:10,
+  patternUnits:'userSpaceOnUse', patternTransform:'rotate(45)' });
+pat.appendChild(el('rect', { x:0, y:0, width:10, height:10, fill:'none' }));
+pat.appendChild(el('line', { x1:0, y1:0, x2:0, y2:10,
+  stroke:'rgba(247,243,236,0.50)', 'stroke-width':'2' }));
+defs.appendChild(pat);
+
+// Clips noms : de x1 de la strate jusqu'au jalon
+STRATES.forEach((s, i) => {
+  const x1 = xOf(s.start);
+  const y  = START_Y + i * (BAR_H + GAP);
+  const cp = el('clipPath', { id:`cp-bar-${i}` });
+  cp.appendChild(el('rect', { x: x1 + 2, y: String(y), width: String(futX - x1 - 4), height: String(BAR_H) }));
+  defs.appendChild(cp);
+});
+
+svg.appendChild(defs);
+
+/* ── FOND ───────────────────────────────────────────────────── */
+svg.appendChild(el('rect', { x:0, y:0, width:SVG_W, height:SVG_H, fill:'#f7f3ec' }));
+
+/* ── GRILLE ─────────────────────────────────────────────────── */
+const rulerY = START_Y + TOTAL_H + 10;
+for (let yr = 1980; yr < YEAR_END; yr += 10) {
+  svg.appendChild(el('line', { x1:xOf(yr), y1:MT, x2:xOf(yr), y2:rulerY,
+    stroke:'#d4cdc0', 'stroke-width':'0.5', 'stroke-dasharray':'3,5' }));
+}
+
+/* ── ZONE FUTURIBLE fond + hachures ─────────────────────────── */
+svg.appendChild(el('rect', { x:futX, y:futTop, width:futW, height:futH,
+  fill:'#e8e2d4', opacity:'0.35' }));
+
+/* ── STRATES ────────────────────────────────────────────────── */
+STRATES.forEach((s, i) => {
+  const y  = START_Y + i * (BAR_H + GAP);
+  const x1 = xOf(s.start);
+  const x2 = xOf(s.end);
+  const w  = x2 - x1;
+
+  // Barre pleine
+  svg.appendChild(el('rect', { x:x1, y:String(y), width:w, height:BAR_H, fill:s.color }));
+
+  // Hachures sur partie futurible
+  const hx = Math.max(x1, futX);
+  const hw = Math.max(0, x2 - hx);
+  if (hw > 0) {
+    svg.appendChild(el('rect', { x:hx, y:String(y), width:hw, height:BAR_H, fill:'url(#hatch)' }));
+  }
+
+  // Marqueur de début
+  if (s.start > YEAR_START + 1) {
+    svg.appendChild(el('rect', { x:x1, y:String(y+2), width:2, height:BAR_H-4,
+      fill:'rgba(255,255,255,0.55)' }));
+  }
+
+  // Nom clippé avant le jalon
+  svg.appendChild(el('text', {
+    x: String(x1 + 10),
+    y: String(y + BAR_H / 2 + 4),
+    fill: 'rgba(255,255,255,0.93)',
+    'font-size': '11',
+    'font-family': "'IBM Plex Mono', monospace",
+    'clip-path': `url(#cp-bar-${i})`
+  }, s.label));
+});
+
+/* ── BORDURE FUTURIBLE ──────────────────────────────────────── */
+svg.appendChild(el('rect', { x:futX, y:futTop, width:futW, height:futH,
+  fill:'none', stroke:'#9a8f7a', 'stroke-width':'1.2',
+  'stroke-dasharray':'5,4', rx:'2' }));
+
+/* ── JALON ligne + losange ──────────────────────────────────── */
+const jx = futX;
+const jt = futTop;
+const jb = rulerY + 8;
+
+svg.appendChild(el('line', { x1:jx, y1:jt, x2:jx, y2:jb,
+  stroke:'#c0392b', 'stroke-width':'2', 'stroke-dasharray':'5,3' }));
+
+const ds = 5;
+svg.appendChild(el('polygon', {
+  points:`${jx},${jt+2} ${jx+ds},${jt+ds+2} ${jx},${jt+ds*2+2} ${jx-ds},${jt+ds+2}`,
+  fill:'#c0392b', opacity:'0.9' }));
+
+/* ── TEXTE 3 LIGNES au-dessus des barres dans la zone futurible */
+const tx  = Math.round(futX + futW / 2);
+// Espace disponible au-dessus des barres : de futTop à START_Y = ~62px
+// On place les 3 lignes dans cet espace
+const tBase = Math.round((futTop + START_Y) / 2) + 6;
+
+['24.03.2026', 'vers un futur', 'coopératif ?'].forEach((txt, i) => {
+  svg.appendChild(el('text', {
+    x: String(tx),
+    y: String(tBase + (i - 1) * 16),
+    'text-anchor': 'middle',
+    fill: '#c0392b',
+    'font-family': "'IBM Plex Mono', monospace",
+    'font-size': '11',
+    'font-weight': '500'
+  }, txt));
+});
+
+/* ── RÈGLE ──────────────────────────────────────────────────── */
+svg.appendChild(el('line', { x1:ML, y1:rulerY, x2:SVG_W-MR, y2:rulerY,
+  stroke:'#b8af9e', 'stroke-width':'1' }));
+
+[1974, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020, 2025, 2030].forEach(yr => {
+  const x     = xOf(yr);
+  const isDec = yr === 1974 || yr % 10 === 0;
+  svg.appendChild(el('line', { x1:x, y1:rulerY, x2:x, y2:rulerY+(isDec?8:5),
+    stroke:'#9a8f7e', 'stroke-width':isDec?'1.1':'0.7' }));
+  svg.appendChild(el('text', { x, y:rulerY+17, 'text-anchor':'middle',
+    fill:isDec?'#5a5040':'#9a8f7e',
+    'font-size':isDec?'9':'8',
+    'font-family':"'IBM Plex Mono', monospace",
+    'font-weight':isDec?'500':'400' }, String(yr)));
+});
+
+/* ── NOTE ───────────────────────────────────────────────────── */
+svg.appendChild(el('text', { x:ML, y:SVG_H-3,
+  fill:'#c0b8aa', 'font-size':'7',
+  'font-family':"'IBM Plex Mono', monospace", 'font-style':'italic' },
+  'Couches du plus ancien (haut) au plus récent (bas) · zone hachurée : la coopération entre structures est un futurible'));
+</script>
+</body>
+</html>
