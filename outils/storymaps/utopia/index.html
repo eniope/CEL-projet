@@ -2,9 +2,12 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css">
+  <style>
+  html, body { margin: 0; padding: 0; height: 100%; }
+</style>
 </head>
 <body>
-  <div id="mainstory"></div>
+  <div id="mainstory" style="width:100%; height:600px;"></div>
   <script src="https://cdn.knightlab.com/libs/storymapjs/latest/js/storymap-min.js"></script>
   <script>
     var storymap = new VCO.StoryMap('mainstory', 'utopia.json');
