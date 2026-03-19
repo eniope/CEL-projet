@@ -1,9 +1,14 @@
 {
   "storymap": {
-    "map_type": "image",
+    "map_type": "zoomify",
     "map_as_image": true,
-    "image": "images/terra_incognita_1.png",
     "map_background_color": "#e8dfd0",
+    "zoomify": {
+      "path": "images/terra_incognita_1.png",
+      "width": 1600,
+      "height": 900,
+      "tolerance": 0.9
+    },
     "slides": [
       {
         "type": "overview",
@@ -27,3 +32,4 @@
     ]
   }
 }
+
