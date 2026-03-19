@@ -2,7 +2,7 @@
   "storymap": {
     "map_type": "image",
     "map_as_image": true,
-    "image": "images/terra_incognita_1",
+    "image": "images/terra_incognita_1.svg",
     "map_background_color": "#e8dfd0",
     "slides": [
       {
