@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terra Incognita — Utopia</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: Georgia, serif; background: #2a2520; }
 
+    #carte { 
+      width: 100%; 
+      height: 100vh; 
+      background: #e8dfd0;
+    }
+
+    /* Panneau narratif */
+    #panneau {
+      position: fixed;
+      right: 0; top: 0;
+      width: 340px; height: 100%;
+      background: rgba(245, 240, 232, 0.97);
+      border-left: 1px solid #c4b49a;
+      padding: 32px 28px;
+      overflow-y: auto;
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+    }
+    #panneau.ouvert { transform: translateX(0); }
+
+    #panneau-fermer {
+      position: absolute;
+      top: 14px; left: 14px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #8a7060;
+      background: none;
+      border: none;
+      font-family: Georgia, serif;
+    }
+    #panneau-fermer:hover { color: #3a2810; }
+
+    #panneau h2 {
+      font-size: 20px;
+      color: #3a2810;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      padding-right: 20px;
+    }
+    #panneau .lieu-type {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #9a8070;
+      margin-bottom: 16px;
+    }
+    #panneau p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #4a3828;
+    }
+    #panneau .separateur {
+      border: none;
+      border-top: 1px solid #c4b49a;
+      margin: 20px 0;
+    }
+    #panneau .question {
+      font-size: 13px;
+      font-style: italic;
+      color: #7a6050;
+      line-height: 1.7;
+    }
+
+    /* Titre flottant */
+    #titre-carte {
+      position: fixed;
+      top: 20px; left: 20px;
+      z-index: 999;
+      background: rgba(245, 240, 232, 0.92);
+      border: 1px solid #c4b49a;
+      padding: 12px 18px;
+      pointer-events: none;
+    }
+    #titre-carte h1 {
+      font-size: 16px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a2810;
+      font-weight: normal;
+    }
+    #titre-carte p {
+      font-size: 11px;
+      color: #9a8070;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* Légende */
+    #legende {
+      position: fixed;
+      bottom: 20px; left: 20px;
+      z-index: 999;
+      background: rgba(245, 240, 232, 0.92);
+      border: 1px solid #c4b49a;
+      padding: 10px 14px;
+      font-size: 11px;
+      color: #7a6050;
+      letter-spacing: 1px;
+    }
+
+    /* Marqueurs custom */
+    .marqueur-custom {
+      background: #3a2810;
+      border: 2px solid #e8dfd0;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .marqueur-custom:hover { transform: scale(1.3); }
+  </style>
+</head>
+<body>
+
+<div id="titre-carte">
+  <h1>Terra Incognita</h1>
+  <p>premier kilomètre · monde imaginaire</p>
+</div>
+
+<div id="legende">↑ cliquer sur un lieu pour l'explorer</div>
+
+<div id="carte"></div>
+
+<div id="panneau">
+  <button id="panneau-fermer">✕</button>
+  <div class="lieu-type" id="panneau-type"></div>
+  <h2 id="panneau-titre"></h2>
+  <p id="panneau-texte"></p>
+  <hr class="separateur">
+  <p class="question" id="panneau-question"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+
+// ── Initialisation carte ──────────────────────────────────────
+var carte = L.map('carte', {
+  crs: L.CRS.Simple,
+  minZoom: -2,
+  maxZoom: 3,
+  zoomControl: true,
+  attributionControl: false
+});
+
+// Dimensions de l'image (adapter selon ton PNG)
+var w = 1600, h = 900;
+var bounds = [[0, 0], [h, w]];
+
+L.imageOverlay('images/terra_incognita_1.png', bounds).addTo(carte);
+carte.fitBounds(bounds);
+
+// ── Lieux ─────────────────────────────────────────────────────
+var lieux = [
+  {
+    pos: [720, 320],
+    titre: "Le Seuil",
+    type: "Territoire de transition",
+    texte: "Là où l'on quitte le monde connu. Ni dedans ni dehors. Le seuil n'est pas un obstacle — c'est le premier acte du passage. Tout groupe en enquête traverse ici sa première résistance.",
+    question: "Qu'est-ce qui retient votre groupe de franchir ce seuil ? Qu'est-ce qui l'y attire ?"
+  },
+  {
+    pos: [300, 500],
+    titre: "La Clairière",
+    type: "Espace de délibération",
+    texte: "Un espace ouvert au cœur du dense. La lumière y entre autrement. Les clairières ne se planifient pas — elles s'ouvrent quand le groupe accepte de ralentir et de voir ensemble.",
+    question: "Quand votre collectif a-t-il vécu une clairière ? Qu'est-ce qui l'avait rendu possible ?"
+  },
+  {
+    pos: [580, 700],
+    titre: "La Source",
+    type: "Lieu de ressourcement",
+    texte: "L'eau vient de quelque part. La source désigne ce qui alimente — une pratique, une relation, une mémoire. Elle peut se tarir si on ne sait pas la préserver.",
+    question: "Quelle est votre source ? Est-elle visible par les autres membres du groupe ?"
+  },
+  {
+    pos: [200, 250],
+    titre: "La Forge",
+    type: "Territoire de fabrication",
+    texte: "On ne traverse pas la forge — on y travaille. C'est le lieu de la transformation par l'effort, de l'erreur comme matériau. La forge exige du feu et de la patience.",
+    question: "Qu'est-ce que votre groupe est en train de fabriquer ensemble, même maladroitement ?"
+  },
+  {
+    pos: [130, 600],
+    titre: "L'Archipel",
+    type: "Zone d'îles reliées",
+    texte: "Des territoires séparés qui se répondent. L'archipel rappelle que l'isolement peut être une posture, pas un destin. Les ponts entre îles se construisent — ils ne tombent pas du ciel.",
+    question: "Quelles sont vos îles ? Avec lesquelles avez-vous déjà établi des liaisons ?"
+  },
+  {
+    pos: [120, 390],
+    titre: "L'Impasse",
+    type: "Lieu de butée",
+    texte: "L'impasse n'est pas un échec — c'est une information. Elle dit : pas par là. Elle oblige à regarder ce qu'on n'avait pas voulu voir. Les impasses fructueuses ont toutes un mur qu'on a accepté de toucher.",
+    question: "Quelle impasse votre groupe évite-t-il de nommer ? Que révèle-t-elle ?"
+  },
+  {
+    pos: [450, 130],
+    titre: "Le Belvédère",
+    type: "Point de vue élevé",
+    texte: "D'ici on voit l'ensemble. Le belvédère n'est utile que si l'on redescend. Monter pour voir, redescendre pour faire — le va-et-vient entre vision et action.",
+    question: "De quel belvédère disposez-vous ? Qui dans votre groupe monte rarement là-haut ?"
+  },
+  {
+    pos: [530, 390],
+    titre: "Le Confluent",
+    type: "Lieu de rencontre des courants",
+    texte: "Là où deux rivières se rejoignent, l'eau est trouble un moment. Le confluent est un lieu de turbulence créatrice — les courants ne se mélangent pas sans résistance.",
+    question: "Quels courants différents traversent votre groupe ? Où se rencontrent-ils ?"
+  }
+];
+
+// ── Marqueurs ─────────────────────────────────────────────────
+var panneau = document.getElementById('panneau');
+
+function creerMarqueur(lieu) {
+  var icone = L.divIcon({
+    className: '',
+    html: '<div class="marqueur-custom" style="width:14px;height:14px;"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+
+  var m = L.marker(lieu.pos, { icon: icone }).addTo(carte);
+  
+  m.on('click', function() {
+    document.getElementById('panneau-type').textContent = lieu.type;
+    document.getElementById('panneau-titre').textContent = lieu.titre;
+    document.getElementById('panneau-texte').textContent = lieu.texte;
+    document.getElementById('panneau-question').textContent = lieu.question;
+    panneau.classList.add('ouvert');
+    carte.setView(lieu.pos, carte.getZoom());
+  });
+
+  // Label au survol
+  m.bindTooltip(lieu.titre, {
+    permanent: false,
+    direction: 'top',
+    offset: [0, -10],
+    className: 'leaflet-tooltip'
+  });
+}
+
+lieux.forEach(creerMarqueur);
+
+// ── Fermeture panneau ─────────────────────────────────────────
+document.getElementById('panneau-fermer').addEventListener('click', function() {
+  panneau.classList.remove('ouvert');
+});
+
+carte.on('click', function() {
+  panneau.classList.remove('ouvert');
+});
+
+</script>
+</body>
+</html>
