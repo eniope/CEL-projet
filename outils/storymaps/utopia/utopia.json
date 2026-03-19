@@ -1,5 +1,8 @@
 {
   "storymap": {
+    "map_type": "image",
+    "map_as_image": true,
+    "map_background_color": "#e8dfd0",
     "slides": [
       {
         "type": "overview",
@@ -10,16 +13,13 @@
       },
       {
         "location": {
-          "lat": 46.8,
-          "lon": 1.7,
-          "zoom": 15
+          "lat": 0.5,
+          "lon": 0.5,
+          "zoom": 3
         },
         "text": {
           "headline": "Un lieu",
           "text": "Ce qui s'y passe"
-        },
-        "media": {
-          "url": "images/fond_storymap1.jpg"
         }
       }
     ]
