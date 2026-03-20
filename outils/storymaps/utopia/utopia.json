@@ -5,6 +5,8 @@
     "map_background_color": "#f5f0e6",
     "zoomify": {
       "path": "images/tuiles/",
+      "width": 4000,
+      "height": 3000,
       "tolerance": 0.9
     },
     "slides": [
