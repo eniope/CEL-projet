@@ -14,13 +14,11 @@ window.onload = function() {
   var storymap = new VCO.StoryMap('mainstory', 'utopia.json', {
     map_type: "zoomify",
     map_as_image: true,
-    width: "100%",
-    height: "100%"
+    width: window.innerWidth,
+    height: window.innerHeight
   });
-  storymap.updateDisplay();
+  window.onresize = function() { storymap.updateDisplay(); };
 };
 </script>
 </body>
 </html>
-
-
