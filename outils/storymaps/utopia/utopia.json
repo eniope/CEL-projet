@@ -2,19 +2,19 @@
   "storymap": {
     "map_type": "zoomify",
     "map_as_image": true,
-    "map_background_color": "#e8dfd0",
+    "map_background_color": "#f5f0e6",
     "zoomify": {
       "path": "images/tuiles/",
-      "width": 1360,
-      "height": 980,
+      "width": 4000,
+      "height": 3000,
       "tolerance": 0.9
     },
     "slides": [
       {
         "type": "overview",
         "text": {
-          "headline": "Le premier kilomètre",
-          "text": "Monde imaginaire — Terra Incognita"
+          "headline": "Terra Incognita",
+          "text": "pays fictif · enquête située · premier kilomètre"
         }
       },
       {
@@ -24,10 +24,11 @@
           "zoom": 3
         },
         "text": {
-          "headline": "Un lieu",
-          "text": "Ce qui s'y passe"
+          "headline": "Prat-Haut",
+          "text": "living lab · enquête"
         }
       }
     ]
   }
 }
+
