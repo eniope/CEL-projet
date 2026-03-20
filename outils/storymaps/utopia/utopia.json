@@ -1,34 +1,92 @@
 {
+  "height": "3000",
+  "width": "4000",
   "storymap": {
+    "call_to_action": true,
+    "call_to_action_text": "",
+    "language": "fr",
+    "map_as_image": false,
+    "map_background_color": "#e6dfcd",
     "map_type": "zoomify",
-    "map_as_image": true,
-    "map_background_color": "#f5f0e6",
     "zoomify": {
-      "path": "images/tuiles/",
-      "width": 4000,
+      "attribution": "",
       "height": 3000,
-      "tolerance": 0.9
+      "width": 4000,
+      "path": "https://eniope.github.io/CEL-projet/outils/storymaps/utopia/images/tuiles/"
     },
     "slides": [
       {
-        "type": "overview",
+        "date": "",
+        "location": {
+          "lat": 62,
+          "lon": 20,
+          "zoom": 1,
+          "line": true
+        },
+        "media": {
+          "caption": "",
+          "credit": "",
+          "url": ""
+        },
         "text": {
-          "headline": "Terra Incognita",
-          "text": "pays fictif · enquête située · premier kilomètre"
+          "headline": "PRAT Le HAUT",
+          "text": "Ici tout commence..."
         }
       },
       {
+        "date": "",
         "location": {
-          "lat": 0.5,
-          "lon": 0.5,
-          "zoom": 3
+          "lat": 54.77534585936447,
+          "lon": -35.68359375,
+          "zoom": 3,
+          "line": true
+        },
+        "media": {
+          "caption": "",
+          "credit": "",
+          "url": ""
         },
         "text": {
-          "headline": "Prat-Haut",
-          "text": "living lab · enquête"
+          "headline": "Depuis peu...",
+          "text": "...il règne une ambiance de living lab à Prat le Haut"
+        }
+      },
+      {
+        "date": "",
+        "location": {
+          "lat": 61.52269494598361,
+          "lon": -5.244139730930328,
+          "zoom": 3,
+          "line": true
+        },
+        "media": {
+          "caption": "",
+          "credit": "",
+          "url": ""
+        },
+        "text": {
+          "headline": "RV à la Croix des chemins",
+          "text": "....la balade était joyeuse"
+        }
+      },
+      {
+        "date": "",
+        "location": {
+          "lat": 69.96043926902489,
+          "lon": 80.36132901906967,
+          "zoom": 3,
+          "line": true
+        },
+        "media": {
+          "caption": "",
+          "credit": "",
+          "url": ""
+        },
+        "text": {
+          "headline": "La forge",
+          "text": "....une fabrique, certes mais de quoi ?"
         }
       }
     ]
   }
 }
-
