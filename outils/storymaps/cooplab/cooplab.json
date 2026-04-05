@@ -1,173 +1,43 @@
 {
-  "height": "3000",
-  "width": "4000",
-  "storymap": {
-    "call_to_action": true,
-    "call_to_action_text": "Entrer dans le parcours →",
-    "language": "fr",
-    "map_as_image": false,
-    "map_background_color": "#d9cfc0",
-    "map_type": "zoomify",
-    "zoomify": {
-      "attribution": "",
-      "height": 3000,
-      "width": 4000,
-      "path": "https://eniope.github.io/CEL-projet/outils/storymaps/utopia/images/tuiles/"
-    },
-    "slides": [
-
-      {
-        "type": "overview",
-        "location": {
-          "lat": 60,
-          "lon": 20,
-          "zoom": 2,
-          "line": false
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Boussole cooplab",
-          "text": "<p>Un parcours en trois espaces entrelacés, depuis un élément déclencheur jusqu'à un horizon ouvert.</p><p><strong>Trois strates :</strong><br>→ <a href='https://cooplab.org'>cooplab.org</a> — le hub<br>→ <a href='https://utopia.cooplab.org'>utopia.cooplab.org</a> — le living lab<br>→ <a href='https://these.cooplab.org'>these.cooplab.org</a> — la thèse</p>"
-        }
+  "title": {
+    "text": {
+      "headline": "Ensemble, faire monde depuis nos vies quotidiennes",
+      "text": "<p><em>« Car nous sommes des hommes dont l’humanisme est fragile ; et chacun d’entre nous tisse dans le détail de sa vie… »</em><br/>Cynthia Fleury & Antoine Fenoglio, Charte du Verstohlen</p><p>Ce qui suit est le journal de voyage d'une personne animée d'un esprit de recherche, qui avance en regardant ce qu'ensemble nous laissons derrière nous.</p><p><strong>Trois temps s'entrelacent :</strong><br/>– Les jours d'avant : des activités, des engagements, des rencontres. Irrévocables. Ils ont laissé des traces qui continuent d'agir.<br/>– Aujourd'hui : jamais tout à fait le même. Un point d'ancrage qui se déplace.<br/>– Les jours d'après : pas encore écrits. Certains jalons sont posés. D'autres restent à planifier. Tous incertains.</p><p>Chaque étape renvoie à des contenus vivants, en cours d'élaboration, sur cooplab.org, utopia.cooplab.org et these.cooplab.org.</p>"
+    }
+  },
+  "events": [
+    {
+      "start_date": {
+        "year": "2026",
+        "month": "04",
+        "day": "01"
       },
-
-      {
-        "date": "12 octobre 2018",
-        "location": {
-          "lat": 54,
-          "lon": -32,
-          "zoom": 4,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Quelle mouche m'a piqué ?",
-          "text": "<p>L'élément déclencheur. Le premier kilomètre commence ici — depuis le lieu vécu, depuis la vie quotidienne.</p><p><em>Rien n'était prévu. Quelque chose s'est ouvert.</em></p>"
-        }
-      },
-
-      {
-        "date": "2018 → 2025",
-        "location": {
-          "lat": 57,
-          "lon": -8,
-          "zoom": 3,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Phase 1 — Le premier kilomètre",
-          "text": "<p>Sept ans d'incubation, de défrichage, de marches et de lectures. Le terrain se prépare sans le savoir.</p><p><strong>Strate hub :</strong><br>→ <a href='https://cooplab.org'>cooplab.org</a> [à compléter]</p><p><strong>Strate living lab :</strong><br>→ <a href='https://utopia.cooplab.org'>utopia.cooplab.org</a> [à compléter]</p>"
-        }
-      },
-
-      {
-        "date": "18 février 2025",
-        "location": {
-          "lat": 60,
-          "lon": 20,
-          "zoom": 4,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Faire monde depuis nos vies quotidiennes",
-          "text": "<p>La mise en mouvement collective. Le living lab prend corps. CARe s'organise. La recherche devient action participative.</p><p><em>Ce n'est plus une intuition — c'est une pratique.</em></p>"
-        }
-      },
-
-      {
-        "date": "02/2025 → 02/2026",
-        "location": {
-          "lat": 63,
-          "lon": 48,
-          "zoom": 3,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Phase 2 — La mise en mouvement",
-          "text": "<p>Un an d'engagement collectif : terrains, rencontres, expérimentations. Les trois espaces commencent à s'entrecroiser.</p><p><strong>Strate living lab :</strong><br>→ <a href='https://utopia.cooplab.org'>utopia.cooplab.org</a> [à compléter]</p><p><strong>Strate hub :</strong><br>→ <a href='https://cooplab.org'>cooplab.org</a> [à compléter]</p>"
-        }
-      },
-
-      {
-        "date": "23 février 2026",
-        "location": {
-          "lat": 66,
-          "lon": 70,
-          "zoom": 4,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Fin de l'initiation à la recherche action participative",
-          "text": "<p>Une étape de consolidation. La RAP n'est plus une méthode à apprendre — elle est une posture habitée.</p><p><em>L'enquête continue, mais différemment.</em></p>"
-        }
-      },
-
-      {
-        "date": "02/2026 → 04/2026",
-        "location": {
-          "lat": 68,
-          "lon": 85,
-          "zoom": 3,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Phase 3 — L'entrelacement",
-          "text": "<p>Les trois espaces s'activent simultanément. Ce qui était dispersé commence à faire système.</p><p><strong>Strate thèse :</strong><br>→ <a href='https://these.cooplab.org'>these.cooplab.org</a> [à compléter]</p><p><strong>Strate living lab :</strong><br>→ <a href='https://utopia.cooplab.org'>utopia.cooplab.org</a> [à compléter]</p><p><strong>Strate hub :</strong><br>→ <a href='https://cooplab.org'>cooplab.org</a> [à compléter]</p>"
-        }
-      },
-
-      {
-        "date": "10 avril 2026",
-        "location": {
-          "lat": 71,
-          "lon": 100,
-          "zoom": 4,
-          "line": true
-        },
-        "media": {
-          "url": "",
-          "caption": "",
-          "credit": ""
-        },
-        "text": {
-          "headline": "Les jours d'après",
-          "text": "<p>L'horizon s'ouvre. Ce qui a été semé peut maintenant vivre sans moi si nécessaire.</p><p><em>« Mon corps décline mais ma pensée croît. Dans ma vieillesse il y a une éclosion. » — Victor Hugo</em></p><p>→ <a href='https://cooplab.org'>cooplab.org</a><br>→ <a href='https://utopia.cooplab.org'>utopia.cooplab.org</a><br>→ <a href='https://these.cooplab.org'>these.cooplab.org</a></p>"
-        }
+      "text": {
+        "headline": "Usage situé d’un outil soutenant l’incubation du projet",
+        "text": "<p>Un outil que je connais depuis 2015.</p><p>Conçu pour évaluer l’innovation sociale depuis le terrain, avec le terrain.<br/>Cinq critères et quatre niveaux, un regard interne, un regard externe recommandé.</p><p>Je l’ai retourné vers mon propre dispositif afin de structurer ma méthode.</p><p>Un collectif qui s’évalue apprend à se regarder penser.<br/>Il nomme ce qui était implicite.<br/>Il identifie les conditions de sa propre continuité.</p><p>Ce radar structure ce qui suit comme fil conducteur.<br/>Chaque étape de ce parcours y résonne sans que ce soit toujours dit.</p>"
       }
-
-    ]
-  }
+    },
+    {
+      "start_date": {
+        "year": "2026",
+        "month": "04",
+        "day": "10"
+      },
+      "text": {
+        "headline": "10 avril — Design with care de territoires robustes",
+        "text": "<p>Première visio d’une communauté apprenante.</p><ul><li>Dynamiques interdisciplinaires participatives et recherche-création située</li><li>Croisements entre médecine, psychologie, sociologie, arts, pratiques thérapeutiques, robustesse territoriale</li><li>Alimentation, lieux de vie, territoires et pratiques collectives comme leviers de robustesse</li><li>Implication des citoyen·nes, notamment en situation de vulnérabilité, et des acteurs locaux</li><li>Développement de passerelles entre disciplines, cultures et visions du soin intégrées aux projets de territoires</li><li>Usage privilégié d’outils libres pour les échanges et la production</li></ul><p>Un premier jalon où se croisent soin, territoire et capacité d’agir.</p>"
+      }
+    },
+    {
+      "start_date": {
+        "year": "2026",
+        "month": "04",
+        "day": "24"
+      },
+      "text": {
+        "headline": "Les jours d’après — Maillage en cours",
+        "text": "<p>Les jours d’après ne s’alignent pas encore en calendrier stabilisé.<br/>Ils apparaissent comme un <strong>maillage en formation</strong>.</p><p>Des dates émergent, des invitations se précisent, des espaces s’ouvrent.<br/>Ce ne sont pas seulement des rendez-vous.</p><p>Ce sont des <em>situations à habiter</em>,<br/>des occasions de vérifier ce qui tient,<br/>des lieux où se tissent des interdépendances.</p><p>Peu à peu, une trame se dessine :<br/>interventions, contributions, mises en partage.</p><p>Ce qui est en jeu n’est pas l’agenda en lui-même,<br/>mais les conditions du <strong>faire monde ensemble</strong><br/>et de la production de savoirs situés.</p>"
+      }
+    }
+  ]
 }
