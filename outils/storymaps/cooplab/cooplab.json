@@ -30,7 +30,7 @@
         },
         "text": {
           "headline": "Ensemble, faire monde depuis nos vies quotidiennes",
-          "text": "<p><em>« Car nous sommes des hommes dont l’humanisme est fragile ; et chacun d’entre nous tisse dans le détail de sa vie… »</em><br/>Cynthia Fleury & Antoine Fenoglio</p><p>Ce qui suit est le journal de voyage d'une personne animée d'un esprit de recherche.</p><p><strong>Trois temps s'entrelacent :</strong><br/>– Les jours d'avant : des traces irrévocables qui continuent d'agir<br/>– Aujourd'hui : un point d'ancrage en mouvement<br/>– Les jours d'après : incertains, mais déjà en germination</p>"
+          "text": "<p><em>« Car nous sommes des hommes dont l'humanisme est fragile ; et chacun d'entre nous tisse dans le détail de sa vie... »</em><br/>Cynthia Fleury &amp; Antoine Fenoglio</p><p>Ce qui suit est le journal de voyage d'une personne animée d'un esprit de recherche.</p><p><strong>Trois temps s'entrelacent :</strong></p><ul><li>Les jours d'avant : des traces irrévocables qui continuent d'agir</li><li>Aujourd'hui : un point d'ancrage en mouvement</li><li>Les jours d'après : incertains, mais déjà en germination</li></ul>"
         }
       },
       {
@@ -47,8 +47,8 @@
           "url": ""
         },
         "text": {
-          "headline": "Usage situé d’un outil soutenant l’incubation",
-          "text": "<p>Un outil connu depuis 2015.</p><p>Conçu pour évaluer l’innovation sociale depuis le terrain, avec le terrain.</p><p>Je l’ai retourné vers mon propre dispositif.</p><p>Un collectif qui s’évalue apprend à se regarder penser.<br/>Il rend visible l’implicite.<br/>Il identifie les conditions de sa continuité.</p><p>Ce radar devient le fil conducteur du parcours.</p>"
+          "headline": "Radar pour évaluer l'innovation sociale d'une incubation de projet",
+          "text": "<p>Un outil connu depuis 2015. Conçu pour évaluer l'innovation sociale depuis le terrain, avec le terrain. <a href=\"https://cresspaca.org/autres/innovation-sociale/guide-innovation-sociale-cress-paca-lest-cnrs-2\" target=\"_blank\">Guide innovation sociale CRESS PACA / LEST-CNRS</a></p><p>Je l'ai retourné vers mon propre dispositif : la thèse <em>« L'évaluation comme conduite du collectif pensant : vers une épistémologie développementale des sciences citoyennes »</em>.</p><p>Un collectif qui s'évalue apprend à se regarder penser, rend visible l'implicite, identifie les conditions de sa continuité.</p><p>Ce radar devient le fil conducteur du parcours. Son usage situé donnera lieu à des créations de contenus (jalons du cheminement intellectuel) dans les 3 sites.</p>"
         }
       },
       {
@@ -65,8 +65,8 @@
           "url": ""
         },
         "text": {
-          "headline": "10 avril — Design with care de territoires robustes",
-          "text": "<ul><li>Dynamiques interdisciplinaires et recherche-création située</li><li>Croisements entre médecine, psychologie, sociologie, arts</li><li>Alimentation, lieux de vie et pratiques collectives</li><li>Implication des citoyen·nes et des acteurs locaux</li><li>Passerelles entre disciplines et visions du soin</li><li>Usage d’outils libres</li></ul><p>Un premier jalon où se rencontrent soin, territoire et capacité d’agir.</p>"
+          "headline": "10 avril - Visio Design with care de territoires robustes",
+          "text": "<p><a href=\"https://larobustesse.org/soin/?PagePrincipale\" target=\"_blank\">Design with care de territoires robustes</a></p><ul><li>Dynamiques interdisciplinaires et recherche-création située</li><li>Croisements entre médecine, psychologie, sociologie, arts</li><li>Alimentation, lieux de vie et pratiques collectives</li><li>Implication des citoyen·nes et des acteurs locaux</li><li>Passerelles entre disciplines et visions du soin</li><li>Usage d'outils libres</li></ul><p>Un premier jalon où se rencontrent soin, territoire et capacité d'agir. Ces explorations donneront lieu à des créations de contenus (jalons du cheminement intellectuel) dans les 3 sites.</p>"
         }
       },
       {
@@ -83,8 +83,8 @@
           "url": ""
         },
         "text": {
-          "headline": "Les jours d’après — Maillage en formation",
-          "text": "<p>Les jours d’après ne sont pas encore un calendrier.</p><p>Ils apparaissent comme un maillage :</p><p>– des situations à habiter<br/>– des espaces d’expérimentation<br/>– des occasions de vérifier ce qui tient</p><p>Ce qui se dessine n’est pas un agenda,<br/>mais les conditions du faire monde ensemble<br/>et de la production de savoirs situés.</p>"
+          "headline": "Les jours d'après - Maillage en formation",
+          "text": "<p>Les jours d'après ne sont pas encore un calendrier.</p><p>Ils apparaissent comme un maillage :</p><ul><li>des situations à habiter</li><li>des espaces d'expérimentation</li><li>des occasions de vérifier ce qui tient</li></ul><p>Ce qui se dessine n'est pas un agenda, mais les conditions du faire monde ensemble et de la production de savoirs situés.</p>"
         }
       }
     ]
