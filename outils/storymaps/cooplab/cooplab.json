@@ -24,13 +24,31 @@
           "line": true
         },
         "media": {
+          "url": "",
+          "caption": "",
+          "credit": ""
+        },
+        "text": {
+          "headline": "Faire monde depuis nos vies quotidiennes",
+          "text": "<p><em>« Car nous sommes des hommes dont l'humanisme est fragile ; et chacun d'entre nous tisse dans le détail de sa vie...* »</em><br/>Cynthia Fleury &amp; Antoine Fenoglio</p><p>Ce qui suit est le journal de voyage d’une personne animée d’un esprit de recherche, prenant appui sur son vécu expérientiel situé comme matériau d’enquête.</p><p><strong>Trois temps s’entrelacent, chacun traversé par une modalité du vécu expérientiel situé :</strong></p><p><strong>Les jours d’avant</strong><br/>Un vécu expérientiel situé sédimenté, fait de traces irrévocables qui continuent d’agir.</p><p><strong>Aujourd’hui</strong><br/>Un vécu expérientiel situé en cours d’élaboration.</p><p><strong>Les jours d’après</strong><br/>Un vécu expérientiel situé en devenir.</p><p><strong>Chaque point de cette carte correspond à un vécu expérientiel situé, transformé en jalon d’enquête.</strong></p><p><em>Ce que je vis devient partageable.</em></p><p><em>*...des façons de se lier à des collectifs plus régulateurs, tout en assumant un principe d’individuation digne de ce nom, test de crédibilité de l’État de droit. Il s’agit dès lors d’inventer une technique de la furtivité – d’où cette charte tient sa désignation, le Verstohlen –, c’est-à-dire de maintien au monde en y consolidant nos pouvoirs d’agir et nos libertés.</em></p>"
+        }
+      },
+      {
+        "date": "2021-04-03",
+        "location": {
+          "lat": 47,
+          "lon": 2,
+          "zoom": 4,
+          "line": true
+        },
+        "media": {
           "caption": "",
           "credit": "",
           "url": ""
         },
         "text": {
-          "headline": "Faire monde depuis nos vies quotidiennes",
-          "text": "<p><em>« Car nous sommes des hommes dont l'humanisme est fragile ; et chacun d'entre nous tisse dans le détail de sa vie...* »</em><br/>Cynthia Fleury &amp; Antoine Fenoglio</p><p>Ce qui suit est le journal de voyage d'une personne animée d'un esprit de recherche.</p><p><strong>Trois temps s'entrelacent :</strong></p><ul><li>Les jours d'avant : des traces irrévocables qui continuent d'agir</li><li>Aujourd'hui : un point d'ancrage en mouvement, jamais totalement le meme</li><li>Les jours d'après : incertains, mais déjà en germination. Rien n’est encore écrit pour les “jours d’après”, oui...mais je n’y arrive pas les mains vides</li></ul><p><em>*...des façons de se lier à des collectifs plus régulateurs, tout en assumant un principe d’individuation digne de ce nom, test de crédibilité de l’État de droit. Il s’agit dès lors d’inventer une technique de la furtivité – d’où cette charte tient sa désignation, le Verstohlen –, c’est-à-dire de maintien au monde en y consolidant nos pouvoirs d’agir et nos libertés.</em></p>"
+          "headline": "3 avril 2021 — S’autoriser à adresser",
+          "text": "<p>Un week-end de Pâques. Un seuil discret.</p><p>Je m’autorise à écrire à Christophe Lejeune, après avoir découvert son travail à travers des ressources en ligne.</p><p>Ce geste constitue un vécu expérientiel situé : une prise d’initiative dans un espace où je ne me sentais pas légitime.</p><p>Ce qui se joue ici dépasse le seul monde académique : c’est l’ouverture d’une possibilité d’adresse, vers différents espaces de circulation du savoir, entre recherche, terrain et société.</p><p>Ce moment marque un déplacement de position : passer d’une posture d’observation à une tentative d’inscription dans des conversations plus larges.</p><p>Il reste actif et continue d’agir dans ma manière d’entrer en relation avec des mondes hétérogènes.</p>"
         }
       },
       {
@@ -47,8 +65,8 @@
           "url": ""
         },
         "text": {
-          "headline": "Radar pour évaluer l'innovation sociale d'une incubation de projet",
-          "text": "<p>Un outil connu depuis 2015. Conçu pour évaluer l'innovation sociale depuis le terrain, avec le terrain. <a href=\"https://cresspaca.org/autres/innovation-sociale/guide-innovation-sociale-cress-paca-lest-cnrs-2\" target=\"_blank\">Guide innovation sociale CRESS PACA / LEST-CNRS</a></p><p>Je l'ai retourné vers mon propre dispositif : la thèse <em>« L'évaluation comme conduite du collectif pensant : vers une épistémologie développementale des sciences citoyennes »</em>.</p><p>Un collectif qui s'évalue apprend à se regarder penser, rend visible l'implicite, identifie les conditions de sa continuité.</p><p>Ce radar devient le fil conducteur du parcours. Son usage situé donnera lieu à des créations de contenus (jalons du cheminement intellectuel) dans les 3 sites.</p>"
+          "headline": "Un outil retourné sur le vécu : le radar d’innovation sociale",
+          "text": "<p>Un outil connu depuis 2015, conçu pour évaluer l'innovation sociale depuis le terrain, avec le terrain. <a href=\"https://cresspaca.org/autres/innovation-sociale/guide-innovation-sociale-cress-paca-lest-cnrs-2\" target=\"_blank\">Guide innovation sociale CRESS PACA / LEST-CNRS</a></p><p>Dans ce parcours, il est réinvesti à partir du vécu expérientiel situé.</p><p>Le geste d’adresser — amorcé dans certaines situations passées — ouvre ici vers une autre étape : enquêter sur ce qui est vécu.</p><p>L’évaluation n’est plus seulement un outil de mesure, mais une manière de travailler ce qui est vécu et de le rendre partageable.</p><p>Un collectif qui s’évalue apprend à se regarder penser, rend visible l’implicite, et identifie les conditions de sa continuité.</p><p>Ce radar devient un fil conducteur : chaque usage situé donne lieu à des jalons du cheminement intellectuel.</p>"
         }
       },
       {
@@ -65,8 +83,8 @@
           "url": ""
         },
         "text": {
-          "headline": "10 avril - Visio Design with care de territoires robustes",
-          "text": "<p><a href=\"https://larobustesse.org/soin/?PagePrincipale\" target=\"_blank\">Design with care de territoires robustes</a></p><ul><li>Dynamiques interdisciplinaires et recherche-création située</li><li>Croisements entre médecine, psychologie, sociologie, arts</li><li>Alimentation, lieux de vie et pratiques collectives</li><li>Implication des citoyen·nes et des acteurs locaux</li><li>Passerelles entre disciplines et visions du soin</li><li>Usage d'outils libres</li></ul><p>Un premier jalon où se rencontrent soin, territoire et capacité d'agir. Ces explorations donneront lieu à des créations de contenus (jalons du cheminement intellectuel) dans les 3 sites.</p>"
+          "headline": "10 avril — Un jalon situé : design with care de territoires robustes",
+          "text": "<p><a href=\"https://larobustesse.org/soin/?PagePrincipale\" target=\"_blank\">Design with care de territoires robustes</a></p><ul><li>Dynamiques interdisciplinaires et recherche-création située</li><li>Croisements entre médecine, psychologie, sociologie, arts</li><li>Alimentation, lieux de vie et pratiques collectives</li><li>Implication des citoyen·nes et des acteurs locaux</li><li>Passerelles entre disciplines et visions du soin</li><li>Usage d'outils libres</li></ul><p>Ce moment constitue un vécu expérientiel situé : un point de rencontre entre soin, territoire et capacité d’agir.</p><p>Il s’inscrit dans une trajectoire où chaque situation devient l’occasion d’enquêter et de produire des contenus comme jalons du cheminement intellectuel.</p>"
         }
       },
       {
@@ -83,8 +101,8 @@
           "url": ""
         },
         "text": {
-          "headline": "Les jours d'après - Maillage en formation",
-          "text": "<p>Les jours d'après ne sont pas encore un calendrier.</p><p>Ils apparaissent comme un maillage :</p><ul><li>des situations à habiter</li><li>des espaces d'expérimentation</li><li>des occasions de vérifier ce qui tient</li></ul><p>Ce qui se dessine n'est pas un agenda, mais les conditions du faire monde ensemble et de la production de savoirs situés.</p>"
+          "headline": "Les jours d’après — Un maillage de vécus en devenir",
+          "text": "<p>Les jours d’après ne sont pas encore un calendrier.</p><p>Ils apparaissent comme un maillage en formation :</p><ul><li>des situations à habiter</li><li>des espaces d’expérimentation</li><li>des occasions de vérifier ce qui tient</li></ul><p>Chaque situation à venir est envisagée comme un vécu expérientiel situé en devenir.</p><p>Ce qui s’y engage n’est pas seulement une projection, mais une capacité en cours de formation : celle d’entrer dans les situations en les considérant comme des terrains d’enquête.</p><p>Ce qui se dessine n’est pas un agenda, mais les conditions du faire monde ensemble et de la production de savoirs situés.</p>"
         }
       }
     ]
